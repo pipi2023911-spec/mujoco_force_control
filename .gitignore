@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+results/
+docs/
+README.md
+README_LINUX_ROS.md
+AGENTS.md
+assets/mujoco_menagerie_panda/README.md
+assets/mujoco_menagerie_panda/CHANGELOG.md
+assets/mujoco_menagerie_panda/panda.png
