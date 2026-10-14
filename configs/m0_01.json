@@ -1,0 +1,13 @@
+{
+  "model": "assets/mujoco_menagerie_panda/scene.xml",
+  "home_key": "home",
+  "physics_dt_s": 0.001,
+  "control_dt_s": 0.005,
+  "duration_s": 2.0,
+  "joint_limit_tolerance": 0.00001,
+  "max_arm_drift_rad": 0.05,
+  "max_arm_speed_rad_s": 1.0,
+  "max_final_arm_speed_rad_s": 0.01,
+  "arm_joints": ["joint1", "joint2", "joint3", "joint4", "joint5", "joint6", "joint7"],
+  "finger_joints": ["finger_joint1", "finger_joint2"]
+}

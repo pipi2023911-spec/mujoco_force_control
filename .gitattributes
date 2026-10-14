@@ -1,0 +1,7 @@
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+*.sh text eol=lf
+# Preserve vendored bytes so the recorded asset hashes survive a fresh clone.
+assets/mujoco_menagerie_panda/** -text whitespace=cr-at-eol
