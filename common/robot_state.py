@@ -23,7 +23,7 @@ def inspect_model(model, data, config):
         elif trn == mujoco.mjtTrn.mjTRN_TENDON:
             target_name = model.tendon(target).name
         else:
-            raise ValueError(f"Unexpected transmission: {trn}")
+            raise ValueError(f"未知传动类型： {trn}")
         actuators.append({
             "name": model.actuator(a).name, "ctrl_index": a,
             "transmission": mujoco.mjtTrn(trn).name, "target": target_name,
@@ -39,23 +39,23 @@ def inspect_model(model, data, config):
     arm_ids = np.array([model.joint(n).id for n in config["arm_joints"]])
     finger_ids = [model.joint(n).id for n in config["finger_joints"]]
     if len(arm_ids) != 7 or len(finger_ids) != 2 or model.njnt != 9:
-        raise ValueError("Expected seven arm and two finger joints")
+        raise ValueError("模型必须包含七个臂关节和两个夹爪关节")
     if not np.all(model.jnt_type[arm_ids] == mujoco.mjtJoint.mjJNT_HINGE):
-        raise ValueError("Arm joint type mismatch")
+        raise ValueError("臂关节类型不匹配")
     if not np.all(model.jnt_type[finger_ids] == mujoco.mjtJoint.mjJNT_SLIDE):
-        raise ValueError("Finger joint type mismatch")
+        raise ValueError("夹爪关节类型不匹配")
     for name in config["arm_joints"]:
         matches = [a for a in actuators if a["transmission"] == "mjTRN_JOINT" and a["target"] == name]
         if len(matches) != 1:
-            raise ValueError(f"Missing/ambiguous actuator for {name}")
+            raise ValueError(f"执行器缺失或映射不唯一： {name}")
     if model.nu != 8 or sum(a["transmission"] == "mjTRN_TENDON" for a in actuators) != 1:
-        raise ValueError("Unexpected gripper actuator mapping")
+        raise ValueError("夹爪执行器映射异常")
     tendons = []
     for t in range(model.ntendon):
         terms = []
         for w in range(model.tendon_adr[t], model.tendon_adr[t] + model.tendon_num[t]):
             if model.wrap_type[w] != mujoco.mjtWrap.mjWRAP_JOINT:
-                raise ValueError("Expected fixed joint tendon")
+                raise ValueError("此模型应使用固定关节腱传动")
             terms.append({"joint": model.joint(int(model.wrap_objid[w])).name,
                           "coefficient": float(model.wrap_prm[w])})
         tendons.append({"name": model.tendon(t).name, "terms": terms})
@@ -73,15 +73,15 @@ def check_state(model, data, tolerance):
     """Raise on numerical failure, solver warning, or out-of-range command/state."""
     for name in ("qpos", "qvel", "qacc", "ctrl", "actuator_force"):
         if not np.isfinite(getattr(data, name)).all():
-            raise ValueError(f"Non-finite {name}")
+            raise ValueError(f"检测到非有限数值： {name}")
     if np.any(data.warning.number):
-        raise ValueError(f"MuJoCo warnings: {data.warning.number.tolist()}")
+        raise ValueError(f"MuJoCo 引擎警告： {data.warning.number.tolist()}")
     q = data.qpos[model.jnt_qposadr]
     limited = model.jnt_limited.astype(bool)
     if np.any(limited & ((q < model.jnt_range[:, 0] - tolerance) |
                          (q > model.jnt_range[:, 1] + tolerance))):
-        raise ValueError("Joint limit violation")
+        raise ValueError("关节超出限位")
     limited = model.actuator_ctrllimited.astype(bool)
     if np.any(limited & ((data.ctrl < model.actuator_ctrlrange[:, 0]) |
                          (data.ctrl > model.actuator_ctrlrange[:, 1]))):
-        raise ValueError("Control limit violation")
+        raise ValueError("控制输入超出限位")

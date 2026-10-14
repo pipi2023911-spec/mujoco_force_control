@@ -77,7 +77,7 @@ def test_tool_outside_plate_is_rejected(scene):
 def test_two_second_hold_and_fresh_fk_logs(tmp_path):
     config = load_config()
     output = run(config, tmp_path)
-    summary = json.loads((output / "summary.json").read_text())
+    summary = json.loads((output / "summary.json").read_text(encoding="utf-8"))
     assert summary["passed"] and not summary["snapshot_requested"]
     geometry = pd.read_csv(output / "geometry.csv")
     states = pd.read_csv(output / "joint_state.csv")
@@ -103,5 +103,5 @@ def test_failure_saved_and_run_not_overwritten(tmp_path):
         with pytest.raises(ValueError, match="initial_gap"):
             run(config, tmp_path)
     for name in ("run_001", "run_002"):
-        summary = json.loads((tmp_path / name / "summary.json").read_text())
+        summary = json.loads((tmp_path / name / "summary.json").read_text(encoding="utf-8"))
         assert not summary["passed"] and "initial_gap" in summary["error"]

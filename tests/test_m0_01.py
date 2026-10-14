@@ -11,7 +11,7 @@ from experiments.m0_01_model_inspection import ROOT, new_run, run
 
 @pytest.fixture
 def loaded():
-    config = json.loads((ROOT / "configs/m0_01.json").read_text())
+    config = json.loads((ROOT / "configs/m0_01.json").read_text(encoding="utf-8"))
     model = mujoco.MjModel.from_xml_path(str(ROOT / config["model"]))
     data = mujoco.MjData(model)
     mujoco.mj_resetDataKeyframe(model, data, model.key("home").id)
@@ -58,7 +58,7 @@ def test_bad_state_is_rejected(loaded, fault):
 def test_two_second_simulation_and_logs(loaded, tmp_path):
     _, _, config = loaded
     output = run(config, tmp_path)
-    summary = json.loads((output / "summary.json").read_text())
+    summary = json.loads((output / "summary.json").read_text(encoding="utf-8"))
     assert summary["passed"]
     frame = pd.read_csv(output / "joint_state.csv")
     commands = pd.read_csv(output / "control.csv")
@@ -76,5 +76,5 @@ def test_failure_is_preserved(loaded, tmp_path):
     config["home_key"] = "missing"
     with pytest.raises(ValueError, match="home"):
         run(config, tmp_path)
-    summary = json.loads((tmp_path / "run_001" / "summary.json").read_text())
+    summary = json.loads((tmp_path / "run_001" / "summary.json").read_text(encoding="utf-8"))
     assert not summary["passed"] and "home" in summary["error"]

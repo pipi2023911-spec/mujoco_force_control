@@ -17,7 +17,7 @@ def reset_home(model, key_name):
     data = mujoco.MjData(model)
     key = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_KEY, key_name)
     if key < 0:
-        raise ValueError("Required home keyframe missing")
+        raise ValueError("缺少初始关键帧 home")
     mujoco.mj_resetDataKeyframe(model, data, key)
     mujoco.mj_forward(model, data)
     return data
@@ -30,11 +30,11 @@ def build_scene(config, output_xml):
     half_size = np.asarray(config["plate_half_size_m"], dtype=float)
     normal = np.asarray(config["normal_world"], dtype=float)
     if not np.array_equal(normal, [0, 0, 1]):
-        raise ValueError("M0-02 supports the horizontal surface with +Z normal only")
+        raise ValueError("M0-02 当前仅支持世界 +Z 法向的水平接触面")
     if radius <= 0 or gap <= config["minimum_gap_m"] or config["minimum_gap_m"] <= 0:
-        raise ValueError("Require radius > 0 and initial_gap > minimum_gap > 0")
+        raise ValueError("参数应满足：半径 > 0，initial_gap > minimum_gap > 0")
     if np.any(half_size <= 0) or np.any(half_size[:2] <= radius):
-        raise ValueError("Plate must have positive thickness and cover the tool")
+        raise ValueError("薄板厚度必须为正且板面应覆盖工具")
     source = ROOT / config["robot_xml"]
     original = mujoco.MjModel.from_xml_path(str(source))
     home = reset_home(original, config["home_key"])
@@ -127,13 +127,13 @@ def geometry_state(model, data, config):
 
 def check_geometry(state, config):
     if not state["inside_plate_footprint"]:
-        raise ValueError("Tool is outside the plate's usable footprint")
+        raise ValueError("工具超出板面有效范围（footprint）")
     if state["normal_gap_m"] < config["minimum_gap_m"]:
-        raise ValueError("Insufficient tool-plane clearance")
+        raise ValueError("工具与平面间隙不足（clearance）")
     if abs(state["normal_gap_m"] - state["geom_distance_m"]) > config["geometry_tolerance_m"]:
-        raise ValueError("Analytic gap disagrees with MuJoCo geometry distance")
+        raise ValueError("解析间隙与 MuJoCo 几何距离不一致")
     if state["ncon"] != 0:
-        raise ValueError("Unexpected contact in the non-contact M0-02 experiment")
+        raise ValueError("M0-02 无接触实验中出现意外接触")
 
 
 def clearance_audit(model, data, config):

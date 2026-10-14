@@ -1,6 +1,5 @@
-"""M0-02: FK-based contact scene placement and non-contact hold verification."""
+"""M0-02：根据正运动学建立接触场景，验证无接触保持。"""
 import argparse
-from contextlib import nullcontext
 from datetime import datetime, timezone
 import hashlib
 import importlib.metadata
@@ -8,13 +7,14 @@ import json
 from pathlib import Path
 import platform
 import subprocess
-import time
 
 import mujoco
 import numpy as np
 import pandas as pd
 
 from common.contact_scene import build_scene, geometry_state, check_geometry, clearance_audit
+from common.experiment_view import ExperimentView
+from common.chinese_output import chinese, print_summary, save_csv, configure_chinese_font
 from common.robot_state import check_state, inspect_model
 from experiments.m0_01_model_inspection import ROOT, new_run, save_json
 
@@ -22,37 +22,37 @@ from experiments.m0_01_model_inspection import ROOT, new_run, save_json
 def load_config(path=Path("configs/m0_02.json")):
     scene = json.loads((ROOT / path).read_text(encoding="utf-8"))
     base = json.loads((ROOT / scene["base_config"]).read_text(encoding="utf-8"))
-    return {**base, **scene}  # Snapshot the resolved values, not just a base-file reference.
+    return {**base, **scene}  # 合并并保存完整参数，避免后续配置修改使旧实验无法追溯。
 
 
 def configure_camera(camera, config):
-    camera.lookat[:] = config["camera_lookat_m"]
+    camera.lookat[:] = config["camera_lookat_m"]  # 相机观察中心使用世界坐标。
     camera.distance = config["camera_distance_m"]
     camera.azimuth = config["camera_azimuth_deg"]
     camera.elevation = config["camera_elevation_deg"]
 
 
-def run(config, output_root=None, viewer=False, snapshot=False):
+def run(config, output_root=None, viewer=False, snapshot=False, speed=1.0):
     output = new_run(output_root or ROOT / "results" / "M0-02")
     save_json(output / "config.json", config)
-    summary = {"passed": False, "started_utc": datetime.now(timezone.utc).isoformat(),
+    summary = {"passed": False, "display_speed": speed, "started_utc": datetime.now(timezone.utc).isoformat(),
                "python": platform.python_version(), "platform": platform.platform(),
                "versions": {n: importlib.metadata.version(n) for n in ("mujoco", "numpy", "pandas")},
                "viewer_requested": viewer, "snapshot_requested": snapshot}
-    geometry, states, commands, audit = [], [], [], []
+    geometry, states, commands, audit = [], [], [], []  # 分别保存几何、关节状态、控制输入和距离审计。
     sim_time = 0.0
     log = (output / "run.log").open("x", encoding="utf-8")
     def message(text):
-        log.write(f"sim_time_s={sim_time:.6f} {text}\n")
+        log.write(f"仿真时间_秒={sim_time:.6f} {text}\n")
         log.flush()
     try:
         dt, period, duration = config["physics_dt_s"], config["control_dt_s"], config["duration_s"]
         if not all(np.isfinite([dt, period, duration])) or dt <= 0 or period < dt or duration <= 0:
-            raise ValueError("Invalid time configuration")
+            raise ValueError("时间参数无效")
         steps, substeps = round(duration / dt), round(period / dt)
         if not np.isclose(steps * dt, duration) or not np.isclose(substeps * dt, period):
-            raise ValueError("Time periods must be integer multiples of physics timestep")
-        model, data, placement = build_scene(config, output / "contact_scene.xml")
+            raise ValueError("周期必须为物理步长的整数倍")
+        model, data, placement = build_scene(config, output / "contact_scene.xml")  # 由 FK 确定平面，不修改上游模型。
         save_json(output / "scene_report.json", placement)
         save_json(output / "model_report.json", inspect_model(model, data, config))
         summary["git_head_at_run"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
@@ -66,8 +66,8 @@ def run(config, output_root=None, viewer=False, snapshot=False):
         summary["model_source"] = json.loads((ROOT / "assets/MODEL_SOURCE.json").read_text())
         summary["model_dimensions"] = {"njnt": model.njnt, "nq": model.nq, "nv": model.nv, "nu": model.nu}
         arm = [model.joint(n).id for n in config["arm_joints"]]
-        qa, va = model.jnt_qposadr[arm], model.jnt_dofadr[arm]
-        initial_q, command = data.qpos.copy(), data.ctrl.copy()
+        qa, va = model.jnt_qposadr[arm], model.jnt_dofadr[arm]  # 按模型地址选七个臂关节，排除夹爪。
+        initial_q, command = data.qpos.copy(), data.ctrl.copy()  # 保存独立副本，供漂移检查和固定指令使用。
         state_columns = (["time_s"] + [f"qpos_{i}" for i in range(model.nq)] +
                          [f"qvel_{i}" for i in range(model.nv)] + [f"ctrl_{i}" for i in range(model.nu)])
         def record_and_check():
@@ -77,50 +77,43 @@ def run(config, output_root=None, viewer=False, snapshot=False):
             check_state(model, data, config["joint_limit_tolerance"])
             check_geometry(state, config)
             if np.max(np.abs(data.qpos[qa] - initial_q[qa])) > config["max_arm_drift_rad"]:
-                raise ValueError("Arm drift exceeds acceptance threshold")
+                raise ValueError("机械臂位置偏差超过验收阈值")
             if np.max(np.abs(data.qvel[va])) > config["max_arm_speed_rad_s"]:
-                raise ValueError("Arm speed exceeds acceptance threshold")
+                raise ValueError("机械臂速度超过验收阈值")
         record_and_check()
         if abs(geometry[0]["normal_gap_m"] - config["initial_gap_m"]) > config["geometry_tolerance_m"]:
-            raise ValueError("Initial gap does not match FK placement")
+            raise ValueError("初始间隙与正运动学计算不一致")
         audit.extend(clearance_audit(model, data, config))
         if any(r["distance_m"] < -config["geometry_tolerance_m"] for r in audit):
-            raise ValueError("Initial geometry penetration")
-        message(f"FK placement verified; initial gap={geometry[0]['normal_gap_m']:.9f} m; ncon={data.ncon}")
-        context = nullcontext(None)
-        if viewer:
-            import mujoco.viewer as mj_viewer
-            context = mj_viewer.launch_passive(model, data)
-        with context as view:
-            if view is not None:
-                with view.lock():
-                    configure_camera(view.cam, config)
-            start = time.perf_counter()
+            raise ValueError("初始几何体穿透")
+        message(f"正运动学定位已验证；初始间隙={geometry[0]['normal_gap_m']:.9f} m；接触数={data.ncon}")
+        with ExperimentView(model, viewer, speed) as view:
+            if view.enabled:
+                with view.handle.lock():
+                    configure_camera(view.handle.cam, config)
+            view.wait_start(data)  # 准备期间不推进仿真时间。
             for step in range(steps):
                 if step % substeps == 0:
-                    data.ctrl[:] = command
+                    data.ctrl[:] = command  # 整段写入原控制数组，不直接改写关节位置。
                     commands.append([float(data.time), *command.tolist()])
-                mujoco.mj_step(model, data)
+                mujoco.mj_step(model, data)  # 推进一个物理步长，运动由动力学求解得到。
                 sim_time = float(data.time)
                 if not np.isclose(sim_time, (step + 1) * dt, atol=1e-10, rtol=0):
-                    raise ValueError("Unexpected simulation time reset")
-                # mj_step leaves some derived geometry at the pre-integration state.
-                # Refresh before logging sites, distances and contacts at data.time.
+                    raise ValueError("仿真时间意外重置")
+                # mj_step 后部分几何量仍对应积分前状态。
+                # 刷新后再记录，确保坐标、间隙和接触数对应当前仿真时间。
                 mujoco.mj_forward(model, data)
                 record_and_check()
                 if (step + 1) % substeps == 0:
-                    message(f"gap={geometry[-1]['normal_gap_m']:.9f} m; ncon={data.ncon}")
-                    if view is not None:
-                        if not view.is_running():
-                            raise RuntimeError("Viewer closed before experiment finished")
-                        view.sync()
-                        time.sleep(max(0, start + sim_time - time.perf_counter()))
+                    message(f"间隙={geometry[-1]['normal_gap_m']:.9f} m；接触数={data.ncon}")
+                    view.update(data)  # 实时或慢速展示；物理步长保持不变。
+            view.wait_end(data)  # 物理积分已停止，关闭窗口后继续生成报告。
         audit.extend(clearance_audit(model, data, config))
         if any(r["distance_m"] < -config["geometry_tolerance_m"] for r in audit):
-            raise ValueError("Geometry penetration after holding")
+            raise ValueError("保持结束后出现几何体穿透")
         final_speed = float(np.max(np.abs(data.qvel[va])))
         if final_speed > config["max_final_arm_speed_rad_s"]:
-            raise ValueError("Final speed exceeds settling threshold")
+            raise ValueError("末态速度超过稳定验收阈值")
         summary.update({"simulated_duration_s": sim_time, "physics_steps": steps,
                         "state_samples": len(states), "command_samples": len(commands),
                         "initial_gap_m": geometry[0]["normal_gap_m"],
@@ -140,31 +133,32 @@ def run(config, output_root=None, viewer=False, snapshot=False):
                 Image.fromarray(renderer.render()).save(output / "scene.png")
             summary["snapshot_saved"] = True
         summary["passed"] = True
-        message("PASS: fixed tool and surface, positive clearance throughout, zero contacts")
+        message("验收通过：工具与接触面固定，全程间隙为正且接触数为零")
     except Exception as exc:
         summary.update(error=f"{type(exc).__name__}: {exc}", failed_at_sim_time_s=sim_time)
         message(summary["error"])
         raise
     finally:
         if states:
-            pd.DataFrame(states, columns=state_columns).to_csv(output / "joint_state.csv", index=False)
+            save_csv(pd.DataFrame(states, columns=state_columns), output / "joint_state.csv")
         if geometry:
-            pd.DataFrame(geometry).to_csv(output / "geometry.csv", index=False)
+            save_csv(pd.DataFrame(geometry), output / "geometry.csv")
         if commands:
-            pd.DataFrame(commands, columns=["time_s"] + [f"ctrl_{i}" for i in range(len(commands[0])-1)]).to_csv(output / "control.csv", index=False)
+            save_csv(pd.DataFrame(commands, columns=["time_s"] + [f"ctrl_{i}" for i in range(len(commands[0])-1)]), output / "control.csv")
         if audit:
-            pd.DataFrame(audit).to_csv(output / "clearance_audit.csv", index=False)
+            save_csv(pd.DataFrame(audit), output / "clearance_audit.csv")
         save_json(output / "summary.json", summary)
         log.close()
-        print(f"Results: {output}; passed={summary['passed']}")
-    print(json.dumps({k: v for k, v in summary.items() if not k.endswith("sha256")}, indent=2))
+        print(f"结果目录：{output}；验收：{'通过' if summary['passed'] else '未通过'}")
+    print_summary(summary)
     return output
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=Path("configs/m0_02.json"))
-    parser.add_argument("--viewer", action="store_true")
-    parser.add_argument("--snapshot", action="store_true", help="Requires OpenGL; default headless run does not")
+    parser.add_argument("--viewer", action="store_true", help="展示完整过程：空格开始，结束后关闭窗口")
+    parser.add_argument("--speed", type=float, default=1.0, help="图形播放速度；0.25 为四倍慢放，不改变物理步长")
+    parser.add_argument("--snapshot", action="store_true", help="保存实际场景截图，需要 OpenGL；默认无图形模式无需 OpenGL")
     args = parser.parse_args()
-    run(load_config(args.config), viewer=args.viewer, snapshot=args.snapshot)
+    run(load_config(args.config), viewer=args.viewer, snapshot=args.snapshot, speed=args.speed)
