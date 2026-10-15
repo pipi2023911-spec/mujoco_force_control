@@ -1,0 +1,13 @@
+{
+  "base_config": "configs/m0_03.json",
+  "experiment_label": "M0-05",
+  "duration_s": 18.0,
+  "contact_hold_end_s": 9.0,
+  "withdraw_duration_s": 6.0,
+  "withdraw_distance_m": 0.014,
+  "final_clearance_min_m": 0.005,
+  "withdraw_force_bin_s": 0.1,
+  "withdraw_force_rise_tolerance_n": 0.1,
+  "release_transition_max_s": 0.05,
+  "recontact_force_max_n": 0.5
+}

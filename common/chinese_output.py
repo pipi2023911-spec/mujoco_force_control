@@ -61,6 +61,11 @@ LABELS = {
 
 
 LABELS.update({
+    "release_transition_max_s": "离面过渡时长上限_秒", "recontact_force_max_n": "离面回碰峰值上限_N",
+    "contact_hold_end_s": "接触保持统计窗口结束_秒", "withdraw_duration_s": "退出行程时长_秒",
+    "withdraw_distance_m": "退出参考行程_米", "final_clearance_min_m": "离面保持最小间隙_米",
+    "withdraw_force_bin_s": "退出力趋势分箱时长_秒",
+    "withdraw_force_rise_tolerance_n": "退出分箱平均力允许回升_N",
     "base_config": "基础实验配置", "approach_distances_m": "各组参考接近行程_米",
     "force_increment_min_n": "相邻组平均力增量下限_N",
     "penetration_increment_min_m": "相邻组实际穿透增量下限_米",
@@ -83,8 +88,8 @@ LABELS.update({
     "viewer_force_length_m_per_n": "力箭头显示长度比例_米每牛顿", "display_interval_s": "终端指标显示间隔_秒",
     "plot_width_in": "曲线图片宽度_英寸", "plot_height_in": "曲线图片高度_英寸", "plot_dpi": "曲线图片分辨率_DPI",
     "force_definition": "接触力定义", "raw_contact_rows": "逐接触点原始记录条数",
-    "peak_force_n": "峰值法向接触力_N", "hold_mean_force_n": "末段平均法向接触力_N",
-    "hold_std_force_n": "末段法向接触力标准差_N", "hold_contact_fraction": "末段接触时间占比",
+    "peak_force_n": "峰值法向接触力_N", "hold_mean_force_n": "接触保持窗口平均法向力_N",
+    "hold_std_force_n": "接触保持窗口法向力标准差_N", "hold_contact_fraction": "接触保持窗口接触时间占比",
     "first_contact_time_s": "首次超过检测力阈值的时间_秒", "maximum_penetration_m": "最大实际穿透_米",
     "other_contact_count": "其他接触数量", "phase": "实验阶段", "normal_force_n": "工具法向接触力_N",
     "tool_contact_count": "工具球与薄板接触点数", "lateral_drift_m": "横向偏移_米",

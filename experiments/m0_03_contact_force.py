@@ -46,7 +46,8 @@ def plot_force(frame, output, config):
     plt.close(fig)
 
 
-def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False):
+def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
+        reference_function=approach_reference, end_checks=None):
     output = new_run(output_root or ROOT / "results" / "M0-03")
     save_json(output / "config.json", config)
     summary = {"passed": False, "started_utc": datetime.now(timezone.utc).isoformat(),
@@ -95,7 +96,7 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False):
         normal = np.asarray(config["normal_world"], dtype=float)
         start_pos, start_rotation = data.site_xpos[site].copy(), data.site_xmat[site].reshape(3, 3).copy()
         command, previous_arm = data.ctrl.copy(), data.qpos[qa].copy()
-        target, phase = approach_reference(0, start_pos, normal, config)
+        target, phase = reference_function(0, start_pos, normal, config)
         state_columns = ["time_s"] + [f"qpos_{i}" for i in range(model.nq)] + [f"qvel_{i}" for i in range(model.nv)]
 
         def record_and_check():
@@ -139,7 +140,7 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False):
             view.wait_start(data)
             for step in range(steps):
                 if step % substeps == 0:
-                    target, phase = approach_reference(float(data.time), start_pos, normal, config)
+                    target, phase = reference_function(float(data.time), start_pos, normal, config)
                     arm_command = solve_pose(model, reference, site, arm, target, start_rotation, config)
                     if np.max(np.abs(arm_command - previous_arm)) > config["max_joint_reference_speed_rad_s"] * period:
                         raise ValueError("关节位置参考变化率超限")
@@ -162,7 +163,8 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False):
                         print(f"仿真 {sim_time:.2f} 秒｜{phase}｜法向接触力 {samples[-1]['normal_force_n']:.3f} N", flush=True)
             view.wait_end(data)
         frame = pd.DataFrame(samples)
-        hold = frame[frame.time_s > duration - config["hold_metrics_window_s"]]
+        hold_end = config.get("contact_hold_end_s", duration)  # 退出实验在退出之前统计接触保持。
+        hold = frame[(frame.time_s > hold_end - config["hold_metrics_window_s"]) & (frame.time_s <= hold_end)]
         detected = frame[frame.normal_force_n > config["contact_detection_force_n"]]
         hold_fraction = float((hold.tool_contact_count > 0).mean())
         hold_mean = float(hold.normal_force_n.mean())
@@ -182,6 +184,8 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False):
             raise ValueError("未建立可持续检测的工具球与薄板接触")
         if summary["final_arm_speed_rad_s"] > config["max_final_arm_speed_rad_s"]:
             raise ValueError("末态关节速度未达到稳定阈值")
+        if end_checks is not None:
+            summary.update(end_checks(frame, config))  # 实验专属验收也在失败日志保护范围内。
         plot_force(frame, output, config)
         if snapshot:
             from PIL import Image
@@ -195,7 +199,7 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False):
                 renderer.update_scene(data, camera=camera, scene_option=options)
                 Image.fromarray(renderer.render()).save(output / "contact_scene.png")
         summary["passed"] = True
-        message("验收通过：真实力接口有效，接触建立并保持；未进行目标力跟踪")
+        message("验收通过：真实力接口和本实验检查通过；未进行目标力跟踪")
     except Exception as exc:
         summary.update(error=f"{type(exc).__name__}: {exc}", failed_at_sim_time_s=sim_time)
         message(summary["error"])
