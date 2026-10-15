@@ -60,6 +60,45 @@ LABELS = {
 }
 
 
+LABELS.update({
+    "scene_config": "接触场景配置文件", "settle_duration_s": "初始保持时长_秒",
+    "approach_duration_s": "接近时长_秒", "approach_distance_m": "预设接近行程_米",
+    "max_reference_speed_m_s": "位置参考速度上限_米每秒",
+    "max_joint_reference_speed_rad_s": "关节参考速度上限_rad每秒",
+    "ik_damping": "逆运动学阻尼系数", "ik_orientation_weight_m": "姿态误差加权长度_米",
+    "ik_position_tolerance_m": "逆运动学位置容差_米",
+    "ik_orientation_tolerance_rad": "逆运动学姿态容差_rad",
+    "ik_max_iterations": "逆运动学最大迭代次数", "ik_max_step_rad": "逆运动学增量上限_rad",
+    "joint_limit_margin_rad": "关节限位余量_rad", "max_measured_force_n": "接触合力验收上限_N",
+    "max_penetration_m": "实际穿透验收上限_米", "max_lateral_drift_m": "最大横向偏移_米",
+    "max_orientation_error_rad": "最大姿态偏差_rad", "contact_detection_force_n": "接触检测力阈值_N",
+    "minimum_hold_mean_force_n": "末段平均接触力验收下限_N",
+    "minimum_hold_contact_fraction": "末段接触时间占比验收下限",
+    "hold_metrics_window_s": "末段统计窗口时长_秒", "zero_force_tolerance_n": "零力容差_N",
+    "viewer_force_length_m_per_n": "力箭头显示长度比例_米每牛顿", "display_interval_s": "终端指标显示间隔_秒",
+    "plot_width_in": "曲线图片宽度_英寸", "plot_height_in": "曲线图片高度_英寸", "plot_dpi": "曲线图片分辨率_DPI",
+    "force_definition": "接触力定义", "raw_contact_rows": "逐接触点原始记录条数",
+    "peak_force_n": "峰值法向接触力_N", "hold_mean_force_n": "末段平均法向接触力_N",
+    "hold_std_force_n": "末段法向接触力标准差_N", "hold_contact_fraction": "末段接触时间占比",
+    "first_contact_time_s": "首次超过检测力阈值的时间_秒", "maximum_penetration_m": "最大实际穿透_米",
+    "other_contact_count": "其他接触数量", "phase": "实验阶段", "normal_force_n": "工具法向接触力_N",
+    "tool_contact_count": "工具球与薄板接触点数", "lateral_drift_m": "横向偏移_米",
+    "orientation_error_rad": "姿态偏差_rad", "contact_index": "接触索引",
+    "geom1_id": "接触几何体一编号", "geom2_id": "接触几何体二编号",
+    "constraint_address": "约束地址", "contact_distance_m": "接触几何距离_米",
+    "tool_force_sign": "工具受力方向修正系数", "local_force_normal_n": "接触局部法向力_N",
+    "local_force_tangent1_n": "接触局部切向力一_N", "local_force_tangent2_n": "接触局部切向力二_N",
+})
+for axis in "xyz":
+    LABELS[f"target_{axis}_m"] = f"位置参考{axis.upper()}_米"
+    LABELS[f"tool_force_{axis}_n"] = f"工具受力世界{axis.upper()}_N"
+    LABELS[f"contact_pos_{axis}_m"] = f"接触点世界{axis.upper()}_米"
+for i in range(3):
+    LABELS[f"local_torque_{i}_nm"] = f"接触局部力矩分量{i}_牛米"
+    for j in range(3):
+        LABELS[f"frame_{i}{j}"] = f"接触坐标矩阵_{i}{j}"
+
+
 def chinese(value):
     if isinstance(value, dict):
         return {LABELS.get(k, k): chinese(v) for k, v in value.items()}
