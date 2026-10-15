@@ -34,9 +34,10 @@ def plot_force(frame, output, config):
     chinese = configure_chinese_font()
     fig, ax = plt.subplots(figsize=(config["plot_width_in"], config["plot_height_in"]))
     ax.plot(frame.time_s, frame.normal_force_n, color="#1676a3", linewidth=1.5)
+    label = config.get("experiment_label", "M0-03")
     ax.set(xlabel="仿真时间（秒）" if chinese else "Simulation time (s)",
            ylabel="工具所受法向接触力（N）" if chinese else "Normal force on tool (N)",
-           title="M0-03：真实接触力，无力反馈调节" if chinese else "M0-03: measured contact force, no force regulation")
+           title=f"{label}：真实接触力，无力反馈调节" if chinese else f"{label}: measured contact force, no force regulation")
     ax.set_xlim(0, config["duration_s"])
     ax.set_ylim(bottom=0)
     ax.grid(alpha=0.25)

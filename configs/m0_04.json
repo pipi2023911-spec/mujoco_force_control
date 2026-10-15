@@ -1,0 +1,8 @@
+{
+  "base_config": "configs/m0_03.json",
+  "approach_distances_m": [0.0138, 0.014, 0.0142],
+  "force_increment_min_n": 0.1,
+  "penetration_increment_min_m": 0.0000001,
+  "force_reconstruction_tolerance_n": 0.000000001,
+  "minimum_normal_alignment": 0.95
+}

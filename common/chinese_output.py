@@ -61,6 +61,11 @@ LABELS = {
 
 
 LABELS.update({
+    "base_config": "基础实验配置", "approach_distances_m": "各组参考接近行程_米",
+    "force_increment_min_n": "相邻组平均力增量下限_N",
+    "penetration_increment_min_m": "相邻组实际穿透增量下限_米",
+    "force_reconstruction_tolerance_n": "坐标重建误差容差_N",
+    "minimum_normal_alignment": "受力与法向夹角余弦下限", "experiment_label": "实验编号",
     "scene_config": "接触场景配置文件", "settle_duration_s": "初始保持时长_秒",
     "approach_duration_s": "接近时长_秒", "approach_distance_m": "预设接近行程_米",
     "max_reference_speed_m_s": "位置参考速度上限_米每秒",
