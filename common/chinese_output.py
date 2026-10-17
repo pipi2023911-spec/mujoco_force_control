@@ -61,6 +61,12 @@ LABELS = {
 
 
 LABELS.update({
+    "torque_limits_nm": "七轴力矩限幅_Nm", "translation_stiffness_n_m": "笛卡尔平移刚度_N每m",
+    "translation_damping_ns_m": "笛卡尔平移阻尼_Ns每m", "rotation_stiffness_nm_rad": "姿态刚度_Nm每rad",
+    "rotation_damping_nms_rad": "姿态阻尼_Nms每rad", "null_stiffness_nm_rad": "零空间姿态刚度_Nm每rad",
+    "null_damping_nms_rad": "零空间阻尼_Nms每rad", "null_pinv_rcond": "零空间伪逆截断比例",
+    "probe_duration_s": "力矩模型基础验证时长_秒", "probe_max_joint_drift_rad": "基础保持关节漂移上限_rad",
+    "contact_transient_window_s": "初次接触统计窗口_秒",
     "admittance_start_s": "导纳接管时刻_秒", "admittance_mass_kg": "虚拟质量_kg",
     "admittance_damping_ns_m": "虚拟阻尼_Ns每m", "admittance_stiffness_n_m": "虚拟刚度_N每m",
     "admittance_offset_limit_m": "导纳位移限幅_米", "admittance_speed_limit_m_s": "导纳速度限幅_米每秒",
