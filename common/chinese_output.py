@@ -61,6 +61,14 @@ LABELS = {
 
 
 LABELS.update({
+    "admittance_start_s": "导纳接管时刻_秒", "admittance_mass_kg": "虚拟质量_kg",
+    "admittance_damping_ns_m": "虚拟阻尼_Ns每m", "admittance_stiffness_n_m": "虚拟刚度_N每m",
+    "admittance_offset_limit_m": "导纳位移限幅_米", "admittance_speed_limit_m_s": "导纳速度限幅_米每秒",
+    "equilibrium_residual_limit_n": "虚拟弹簧平衡残差上限_N", "settling_force_band_n": "自身平衡力稳定带半宽_N",
+    "cases": "对照工况", "selected_case": "选择工况", "external_force_n": "实测外部法向力_N",
+    "admittance_x_m": "虚拟退让位移_米", "admittance_v_m_s": "虚拟速度_米每秒",
+    "admittance_a_m_s2": "未限幅虚拟加速度_米每秒平方", "admittance_limited": "导纳状态受限",
+    "admittance_active": "导纳已接管",
     "force_target_n": "目标法向力_N", "force_control_start_s": "力控制接管时刻_秒",
     "contact_confirm_s": "接管前持续接触确认时长_秒", "pi_kp_m_per_n": "PI比例增益_米每牛顿",
     "pi_ki_m_per_ns": "PI积分增益_米每牛顿秒", "pi_integral_limit_m": "PI积分贡献限幅_米",
