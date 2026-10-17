@@ -61,6 +61,18 @@ LABELS = {
 
 
 LABELS.update({
+    "force_target_n": "目标法向力_N", "force_control_start_s": "力控制接管时刻_秒",
+    "contact_confirm_s": "接管前持续接触确认时长_秒", "pi_kp_m_per_n": "PI比例增益_米每牛顿",
+    "pi_ki_m_per_ns": "PI积分增益_米每牛顿秒", "pi_integral_limit_m": "PI积分贡献限幅_米",
+    "pi_offset_limit_m": "PI位置修正限幅_米", "pi_offset_speed_m_s": "PI位置修正速度限幅_米每秒",
+    "tracking_tolerance_n": "稳定带半宽_N", "settling_min_duration_s": "稳定带最短持续时长_秒",
+    "steady_rmse_limit_n": "末秒RMSE上限_N", "steady_force_std_limit_n": "末秒力标准差上限_N",
+    "comparison_rmse_ratio_limit": "PI与Baseline末秒RMSE比值上限", "control_mode": "控制模式",
+    "requested_mode": "请求实验模式", "measured_force_n": "控制采样实际法向力_N",
+    "feedback_time_s": "反馈采样时间_秒", "force_error_n": "目标减实际力_N",
+    "pi_p_m": "PI比例贡献_米", "pi_i_m": "PI积分贡献_米", "pi_offset_m": "PI实际位置修正_米",
+    "pi_unsaturated_m": "PI限幅前输出_米", "pi_integral_blocked": "积分被抗饱和暂停",
+    "pi_output_limited": "PI输出受限", "pi_active": "PI已接管",
     "release_transition_max_s": "离面过渡时长上限_秒", "recontact_force_max_n": "离面回碰峰值上限_N",
     "contact_hold_end_s": "接触保持统计窗口结束_秒", "withdraw_duration_s": "退出行程时长_秒",
     "withdraw_distance_m": "退出参考行程_米", "final_clearance_min_m": "离面保持最小间隙_米",

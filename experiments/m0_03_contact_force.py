@@ -34,10 +34,13 @@ def plot_force(frame, output, config):
     chinese = configure_chinese_font()
     fig, ax = plt.subplots(figsize=(config["plot_width_in"], config["plot_height_in"]))
     ax.plot(frame.time_s, frame.normal_force_n, color="#1676a3", linewidth=1.5)
+    if "force_target_n" in config:
+        ax.axhline(config["force_target_n"], color="black", linestyle="--", label="目标力" if chinese else "Target")
+        ax.legend()
     label = config.get("experiment_label", "M0-03")
     ax.set(xlabel="仿真时间（秒）" if chinese else "Simulation time (s)",
            ylabel="工具所受法向接触力（N）" if chinese else "Normal force on tool (N)",
-           title=f"{label}：真实接触力，无力反馈调节" if chinese else f"{label}: measured contact force, no force regulation")
+           title=(f"{label}：真实接触力" if chinese else f"{label}: measured contact force"))
     ax.set_xlim(0, config["duration_s"])
     ax.set_ylim(bottom=0)
     ax.grid(alpha=0.25)
@@ -47,7 +50,7 @@ def plot_force(frame, output, config):
 
 
 def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
-        reference_function=approach_reference, end_checks=None):
+        reference_function=approach_reference, end_checks=None, feedback_reference=None):
     output = new_run(output_root or ROOT / "results" / "M0-03")
     save_json(output / "config.json", config)
     summary = {"passed": False, "started_utc": datetime.now(timezone.utc).isoformat(),
@@ -82,7 +85,7 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
         summary["git_head_at_run"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
         summary["git_worktree_status"] = subprocess.check_output(["git", "status", "--porcelain"], cwd=ROOT, text=True).splitlines()
         summary["source_sha256"] = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-                                    for folder in ("common", "experiments") for p in sorted((ROOT / folder).glob("*.py"))}
+                                    for folder in ("common", "experiments", "controllers") for p in sorted((ROOT / folder).glob("*.py"))}
         summary["asset_sha256"] = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                                    for p in sorted((ROOT / config["robot_xml"]).parent.rglob("*")) if p.is_file()}
         summary["model_source"] = json.loads((ROOT / "assets/MODEL_SOURCE.json").read_text(encoding="utf-8"))
@@ -108,6 +111,9 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
                             "tool_contact_count": measured["tool_contact_count"], "other_contact_count": data.ncon - measured["tool_contact_count"],
                             "lateral_drift_m": lateral, "orientation_error_rad": angle_error,
                             **{f"tool_force_{a}_n": float(measured["force_world_n"][i]) for i, a in enumerate("xyz")}})
+            if "force_target_n" in config:
+                samples[-1].update(force_target_n=config["force_target_n"],
+                                   force_error_n=config["force_target_n"] - measured["normal_force_n"])
             contacts.extend(measured["points"])
             states.append([float(data.time), *data.qpos.tolist(), *data.qvel.tolist()])
             check_state(model, data, config["joint_limit_tolerance"])
@@ -129,7 +135,7 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
                 raise ValueError("初始保持阶段不应产生接触")
 
         record_and_check()
-        message("初始无接触；仅按时间生成位置参考，接触力不参与轨迹计算")
+        message("初始无接触；启用实验参考更新与真实反馈记录" if feedback_reference else "初始无接触；仅按时间生成位置参考")
         with ExperimentView(model, viewer, speed) as view:
             if view.enabled:
                 with view.handle.lock():
@@ -141,6 +147,9 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
             for step in range(steps):
                 if step % substeps == 0:
                     target, phase = reference_function(float(data.time), start_pos, normal, config)
+                    control_details = {}
+                    if feedback_reference is not None:
+                        target, phase, control_details = feedback_reference(float(data.time), start_pos, normal, config, samples[-1])
                     arm_command = solve_pose(model, reference, site, arm, target, start_rotation, config)
                     if np.max(np.abs(arm_command - previous_arm)) > config["max_joint_reference_speed_rad_s"] * period:
                         raise ValueError("关节位置参考变化率超限")
@@ -148,6 +157,7 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
                     previous_arm = arm_command.copy()
                     data.ctrl[:] = command  # 唯一施加给真实仿真的输入是执行器位置参考。
                     commands.append({"time_s": float(data.time), "phase": phase,
+                                     **control_details,
                                      **{f"target_{a}_m": float(target[i]) for i, a in enumerate("xyz")},
                                      **{f"ctrl_{i}": float(v) for i, v in enumerate(command)}})
                 mujoco.mj_step(model, data)
@@ -199,7 +209,7 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
                 renderer.update_scene(data, camera=camera, scene_option=options)
                 Image.fromarray(renderer.render()).save(output / "contact_scene.png")
         summary["passed"] = True
-        message("验收通过：真实力接口和本实验检查通过；未进行目标力跟踪")
+        message("验收通过：真实力接口和本实验检查通过")
     except Exception as exc:
         summary.update(error=f"{type(exc).__name__}: {exc}", failed_at_sim_time_s=sim_time)
         message(summary["error"])

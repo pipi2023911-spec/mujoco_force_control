@@ -1,0 +1,18 @@
+{
+  "base_config": "configs/m0_03.json",
+  "experiment_label": "M1",
+  "duration_s": 12.0,
+  "force_target_n": 5.0,
+  "force_control_start_s": 8.0,
+  "contact_confirm_s": 0.5,
+  "pi_kp_m_per_n": 0.00002,
+  "pi_ki_m_per_ns": 0.0003,
+  "pi_integral_limit_m": 0.001,
+  "pi_offset_limit_m": 0.0008,
+  "pi_offset_speed_m_s": 0.0005,
+  "tracking_tolerance_n": 0.1,
+  "settling_min_duration_s": 0.5,
+  "steady_rmse_limit_n": 0.1,
+  "steady_force_std_limit_n": 0.05,
+  "comparison_rmse_ratio_limit": 0.2
+}
