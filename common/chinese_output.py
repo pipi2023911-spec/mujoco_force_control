@@ -126,9 +126,17 @@ LABELS.update({
     "local_force_tangent1_n": "接触局部切向力一_N", "local_force_tangent2_n": "接触局部切向力二_N",
 })
 for axis in "xyz":
+    LABELS[f"path_{axis}_m"] = f"名义路径世界{axis.upper()}_米"
     LABELS[f"target_{axis}_m"] = f"位置参考{axis.upper()}_米"
     LABELS[f"tool_force_{axis}_n"] = f"工具受力世界{axis.upper()}_N"
     LABELS[f"contact_pos_{axis}_m"] = f"接触点世界{axis.upper()}_米"
+LABELS.update({
+    "tangential_error_m": "实际相对名义路径切向误差_米",
+    "normal_position_error_m": "实际相对执行参考法向误差_米",
+    "wipe_start_s": "切向运动开始_秒", "wipe_length_m": "单程长度_米",
+    "wipe_leg_duration_s": "单程时长_秒", "max_tangential_error_m": "切向误差上限_米",
+    "endpoint_tolerance_m": "端点误差上限_米",
+})
 for i in range(3):
     LABELS[f"local_torque_{i}_nm"] = f"接触局部力矩分量{i}_牛米"
     for j in range(3):

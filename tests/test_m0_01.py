@@ -6,13 +6,14 @@ import pandas as pd
 import pytest
 
 from common.robot_state import check_state, inspect_model
+from common.contact_scene import load_model
 from experiments.m0_01_model_inspection import ROOT, new_run, run
 
 
 @pytest.fixture
 def loaded():
     config = json.loads((ROOT / "configs/m0_01.json").read_text(encoding="utf-8"))
-    model = mujoco.MjModel.from_xml_path(str(ROOT / config["model"]))
+    model = load_model(ROOT / config["model"])  # 与入口一致，兼容 Windows 中文工作目录。
     data = mujoco.MjData(model)
     mujoco.mj_resetDataKeyframe(model, data, model.key("home").id)
     mujoco.mj_forward(model, data)

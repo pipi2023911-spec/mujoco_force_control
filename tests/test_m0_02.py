@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from common.contact_scene import build_scene, check_geometry, geometry_state, clearance_audit
+from common.contact_scene import build_scene, check_geometry, geometry_state, clearance_audit, load_model
 from experiments.m0_02_contact_scene import load_config, run
 
 
@@ -49,7 +49,7 @@ def test_surface_follows_fk_not_hardcoded_height(tmp_path):
     expected_z = report["tool_center_home_world_m"][2] - config["tool_radius_m"] - 0.03
     assert d.site("plane_origin").xpos[2] == pytest.approx(expected_z)
     # Saved scene must reload with all external meshes present.
-    reloaded = mujoco.MjModel.from_xml_path(str(tmp_path / "scene.xml"))
+    reloaded = load_model(tmp_path / "scene.xml")
     assert reloaded.ngeom == m.ngeom
 
 
@@ -86,7 +86,7 @@ def test_two_second_hold_and_fresh_fk_logs(tmp_path):
     np.testing.assert_allclose(np.diff(geometry.time_s), 0.001, atol=1e-12)
     np.testing.assert_allclose(np.diff(commands.time_s), 0.005, atol=1e-12)
     assert (geometry.ncon == 0).all() and geometry.normal_gap_m.min() > config["minimum_gap_m"]
-    m = mujoco.MjModel.from_xml_path(str(output / "contact_scene.xml"))
+    m = load_model(output / "contact_scene.xml")
     d = mujoco.MjData(m)
     # Independent FK recomputation detects a one-step timestamp/geometry lag.
     for row_index in (0, 100, 500, 2000):

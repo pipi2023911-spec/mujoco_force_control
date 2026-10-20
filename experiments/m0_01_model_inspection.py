@@ -13,6 +13,7 @@ import numpy as np
 import pandas as pd
 
 from common.experiment_view import ExperimentView
+from common.contact_scene import load_model
 from common.chinese_output import chinese, print_summary, save_csv, configure_chinese_font
 from common.robot_state import check_state, inspect_model
 
@@ -59,7 +60,7 @@ def run(config, output_root=None, viewer=False, speed=1.0):
         if not np.isclose(substeps * dt, control_dt) or not np.isclose(steps * dt, duration):
             raise ValueError("周期必须为物理步长的整数倍")
         model_path = ROOT / config["model"]
-        model = mujoco.MjModel.from_xml_path(str(model_path))  # 编译模型结构和资源，不会自动开始仿真。
+        model = load_model(model_path)  # 编译模型结构和资源，不会自动开始仿真。
         model.opt.timestep = dt
         data = mujoco.MjData(model)  # 为该模型创建一份可变化的运行状态。
         key = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_KEY, config["home_key"])

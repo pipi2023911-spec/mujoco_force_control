@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import mujoco
 import numpy as np
 
-from common.contact_scene import build_scene, numbers, reset_home
+from common.contact_scene import build_scene, load_model, numbers, reset_home
 
 
 def build_torque_scene(config, directory):
@@ -29,7 +29,7 @@ def build_torque_scene(config, directory):
     ET.indent(root)
     with (directory / "panda_torque.xml").open("x", encoding="utf-8") as stream:
         stream.write(ET.tostring(root, encoding="unicode"))
-    model = mujoco.MjModel.from_xml_path(str(directory / "panda_torque.xml"))
+    model = load_model(directory / "panda_torque.xml")
     data = reset_home(model, config["home_key"])
     arm = np.array([model.joint(name).id for name in config["arm_joints"]])
     qa, va = model.jnt_qposadr[arm], model.jnt_dofadr[arm]

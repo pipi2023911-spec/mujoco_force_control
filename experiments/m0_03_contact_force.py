@@ -50,7 +50,8 @@ def plot_force(frame, output, config):
 
 
 def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
-        reference_function=approach_reference, end_checks=None, feedback_reference=None):
+        reference_function=approach_reference, end_checks=None, feedback_reference=None,
+        track_path=False):
     output = new_run(output_root or ROOT / "results" / "M0-03")
     save_json(output / "config.json", config)
     summary = {"passed": False, "started_utc": datetime.now(timezone.utc).isoformat(),
@@ -114,12 +115,27 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
             if "force_target_n" in config:
                 samples[-1].update(force_target_n=config["force_target_n"],
                                    force_error_n=config["force_target_n"] - measured["normal_force_n"])
+            # 仅 C1 显式启用：相对于当前时刻的名义路径检查切向误差。
+            # target 是当前仍在执行的零阶保持命令，不用未来参考替代实际命令。
+            if track_path:
+                path, _ = reference_function(float(data.time), start_pos, normal, config)
+                error = data.site_xpos[site] - path
+                tangential_error = float(np.linalg.norm(error - normal * (normal @ error)))
+                samples[-1].update(
+                    **{f"path_{a}_m": float(path[i]) for i, a in enumerate("xyz")},
+                    **{f"target_{a}_m": float(target[i]) for i, a in enumerate("xyz")},
+                    tangential_error_m=tangential_error,
+                    normal_position_error_m=float(normal @ (data.site_xpos[site] - target)))
+                if not np.isfinite(np.r_[path, target, tangential_error]).all():
+                    raise ValueError("路径、执行参考或轨迹误差出现非有限数值")
+                if tangential_error > config["max_tangential_error_m"]:
+                    raise ValueError("实际切向位置相对名义路径的误差超限")
             contacts.extend(measured["points"])
             states.append([float(data.time), *data.qpos.tolist(), *data.qvel.tolist()])
             check_state(model, data, config["joint_limit_tolerance"])
             if not np.isfinite(measured["force_world_n"]).all():
                 raise ValueError("真实接触力出现非有限数值")
-            if not geometry["inside_plate_footprint"] or lateral > config["max_lateral_drift_m"] or angle_error > config["max_orientation_error_rad"]:
+            if not geometry["inside_plate_footprint"] or (not track_path and lateral > config["max_lateral_drift_m"]) or angle_error > config["max_orientation_error_rad"]:
                 raise ValueError("工具板面覆盖、横向位置或姿态偏差超限")
             if geometry["normal_gap_m"] < -config["max_penetration_m"]:
                 raise ValueError("工具球实际穿透量超过仿真验收上限")
@@ -225,7 +241,8 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
             save_csv(pd.DataFrame(contacts), output / "raw_contacts.csv")
         save_json(output / "summary.json", summary)
         log.close()
-        print(f"结果目录：{output}；验收：{'通过' if summary['passed'] else '未通过'}")
+        scope = "基础循环检查（C1 任务验收另行计算）" if track_path else "验收"
+        print(f"结果目录：{output}；{scope}：{'通过' if summary['passed'] else '未通过'}")
         print_summary(summary)
     return output
 

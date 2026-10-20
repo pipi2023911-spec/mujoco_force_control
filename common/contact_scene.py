@@ -1,4 +1,4 @@
-"""Derive a fixed-tool scene without changing the upstream Panda files."""
+"""派生固定工具场景；不修改上游 Panda 文件，并兼容中文工作目录。"""
 import os
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -7,6 +7,19 @@ import mujoco
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_model(path):
+    """同盘优先使用相对路径，避免 Windows MuJoCo 对中文绝对路径的解析问题。
+
+    从仓库根目录运行时，模型和仓库内结果的相对路径均不含中文。
+    不改变模型内容；不同盘符仍保留原绝对路径加载方式。
+    """
+    try:
+        filename = os.path.relpath(path)
+    except ValueError:
+        filename = str(path)
+    return mujoco.MjModel.from_xml_path(filename)
 
 
 def numbers(values):
@@ -36,7 +49,7 @@ def build_scene(config, output_xml):
     if np.any(half_size <= 0) or np.any(half_size[:2] <= radius):
         raise ValueError("薄板厚度必须为正且板面应覆盖工具")
     source = ROOT / config["robot_xml"]
-    original = mujoco.MjModel.from_xml_path(str(source))
+    original = load_model(source)
     home = reset_home(original, config["home_key"])
     parent = original.body(config["tool_parent"]).id
     rotation = home.xmat[parent].reshape(3, 3)
@@ -89,7 +102,7 @@ def build_scene(config, output_xml):
     # Never replace an earlier run's resolved model.
     with output_xml.open("x", encoding="utf-8") as stream:
         stream.write(ET.tostring(root, encoding="unicode"))
-    model = mujoco.MjModel.from_xml_path(str(output_xml))
+    model = load_model(output_xml)
     data = reset_home(model, config["home_key"])
     report = {
         "tool_parent": config["tool_parent"], "hand_position_world_m": home.xpos[parent].tolist(),
