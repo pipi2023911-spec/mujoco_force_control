@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-24",
+  "baseline_commit": "211056d3bf859ddbce039ec1db3b0b7f16a89b3f",
+  "baseline_compatibility": {
+    "baseline/contact_force.csv": "所有原有字段逐值一致",
+    "baseline/control.csv": "所有原有字段逐值一致",
+    "baseline/joint_state.csv": "所有原有字段逐值一致",
+    "baseline/raw_contacts.csv": "所有原有字段逐值一致",
+    "pi/contact_force.csv": "所有原有字段逐值一致",
+    "pi/control.csv": "所有原有字段逐值一致",
+    "pi/joint_state.csv": "所有原有字段逐值一致",
+    "pi/raw_contacts.csv": "所有原有字段逐值一致",
+    "C1指标": "与未修改提交完全一致，均未通过连续接触验收"
+  },
+  "full_tests": {
+    "passed": 52,
+    "failed": 1,
+    "failure": "C1连续接触，原始提交同样失败"
+  },
+  "fixed_pi": [
+    {
+      "模式": "baseline",
+      "末秒平均力_N": 5.964711910707585,
+      "末秒平均误差_N": -0.9647119107075852,
+      "末秒RMSE_N": 0.9647119107075852,
+      "末秒最大绝对误差_N": 0.9647119111266776,
+      "末秒力标准差_N": 1.2952305333807462e-10,
+      "接管后稳定时间_秒": "",
+      "接管后峰值力_N": 5.964951341628022,
+      "接管后接触占比": 1.0,
+      "数据目录": "baseline/run_001"
+    },
+    {
+      "模式": "pi",
+      "末秒平均力_N": 5.002152256865875,
+      "末秒平均误差_N": -0.0021522568658742,
+      "末秒RMSE_N": 0.0034933403672126,
+      "末秒最大绝对误差_N": 0.0143693557905022,
+      "末秒力标准差_N": 0.0027515845079689,
+      "接管后稳定时间_秒": 1.2210000000003287,
+      "接管后峰值力_N": 5.964951341628022,
+      "接管后接触占比": 1.0,
+      "数据目录": "pi/run_001"
+    }
+  ],
+  "sensor_pi": [
+    {
+      "模式": "pi",
+      "末秒平均力_N": 4.989948084259943,
+      "末秒平均误差_N": 0.0100519157400564,
+      "末秒RMSE_N": 0.0107318226995086,
+      "末秒最大绝对误差_N": 0.0242959113084566,
+      "末秒力标准差_N": 0.0037591233563817,
+      "接管后稳定时间_秒": 1.1310000000003804,
+      "接管后峰值力_N": 5.964951341628022,
+      "接管后接触占比": 1.0,
+      "数据目录": "pi/run_001"
+    }
+  ],
+  "example_cli_pi": [
+    {
+      "模式": "pi",
+      "末秒平均力_N": 5.000684439781241,
+      "末秒平均误差_N": -0.000684439781241,
+      "末秒RMSE_N": 0.0064208715815578,
+      "末秒最大绝对误差_N": 0.0297392650728074,
+      "末秒力标准差_N": 0.0063842880615392,
+      "接管后稳定时间_秒": 1.2460000000003166,
+      "接管后峰值力_N": 5.964951341628022,
+      "接管后接触占比": 1.0,
+      "数据目录": "pi/run_001"
+    }
+  ],
+  "c1_metrics": {
+    "运动统计区间_秒": [
+      10.0,
+      16.0
+    ],
+    "运动采样数": 6000,
+    "运动法向力RMSE_N": 1.3332690452047742,
+    "运动平均力误差_N": 0.15671264895068387,
+    "运动峰值法向力_N": 7.039081320365995,
+    "运动接触保持率": 0.9533333333333334,
+    "运动切向误差RMSE_m": 0.0009248336280619987,
+    "运动最大切向误差_m": 0.0015625572342485,
+    "指令累计路径_m": 0.02,
+    "实际累计切向路径_m": 0.01987146834979831,
+    "实际去程X位移_m": 0.009925278679258298,
+    "实际返回X位移_m": 0.009823022724419372,
+    "往返结束相对起点X位移_m": 0.00010225595483892569,
+    "去程端点切向误差_m": 0.0008136981063416,
+    "返回端点切向误差_m": 0.0006374402957285,
+    "连续接触与实际往返验收": false,
+    "PI参与参考修正": true,
+    "passed": false
+  },
+  "archive_sha256": "990a0e9b661a045117456f1f098fbd7a6831e731118523c1c86c759be37729f1",
+  "archive_bytes": 11918554,
+  "archive_entries": 78,
+  "complete_local_archive": "C:\\Users\\12503\\.codex\\.chatgpt-projects\\g-p-6a6489c39bb08191987744a416a168b3\\audit\\panda_complete_evidence_2026-10-24.zip",
+  "complete_local_archive_sha256": "78ef8b1b734cb4df580556f87bb26afa56ce0244e9a6dfb3a1baa81f591b1cdb",
+  "validation_source_sha256": {
+    "common/chinese_output.py": "cb8e3d46d8479f00fadae0eca9aa8032a1062f855466c65c03a9d2705acc9b61",
+    "common/contact_feedback.py": "7e3828c96e5bd91007913544b907f96ae565fe519a8d9c6de202fe65312b389d",
+    "common/contact_scene.py": "327efdbfc270bcdb09229aac7a5736511a04a5a21a298013d8d28a477b899608",
+    "common/experiment_view.py": "0847d72aad989faef336b10f0d71fcf0ef9b034fb624984758ff5e260c8f5f09",
+    "common/force_sensor.py": "efeac9ee79aef8ce4d6e74d9b6a853b0e25c9fd1ac3b6b6f6e132fe71c3fcd83",
+    "common/kinematics.py": "b71de6d366c80f106f42a6d661e62c9b940a7b228af86445ca54f5ff28185b7e",
+    "common/robot_state.py": "19e66de3d1d3b8ded7f16f529c645c7125a9f260618032d082d729e15848e5a1",
+    "common/torque_scene.py": "5ac65ee29e3489c09da60ec6b7f62765e9ac1fc713f9317651116ed10d866b46",
+    "experiments/c1_wipe.py": "ab96535a4f0f920d69492481a7075c5b9012b22b3423a985e130d92fdff8327f",
+    "experiments/m0_01_model_inspection.py": "b476d2add263e45613d88468529ce3a9aba73b678a51785c6147ef32ef96b792",
+    "experiments/m0_02_contact_scene.py": "d80e44a92de832c238c8ed4d83ce4d1089522318d19c382e77a4ccd14cd22e21",
+    "experiments/m0_03_contact_force.py": "509c0cf16dd120d246250d04ba5df0a71432085e8f0ddba997a28958785f17ca",
+    "experiments/m0_04_depth_comparison.py": "17ac879d05117c0c332c9e3fdbc9d0846d59b375a8d579d16ecb03a463210cde",
+    "experiments/m0_05_contact_exit.py": "6c900fce563daef7d80d76fd2f99073f838dfc5175d29e40afd8823250f60f28",
+    "experiments/m1_force_pi.py": "c9043b032e44fcd7c1c97697a03ebe08c1734a248efc051a15e4aa0ddc56590a",
+    "experiments/m2_admittance.py": "f1547afd014f5117d4d5bd5ba2268a0d311ff9cb486ae539cfa1bd851c5374ca",
+    "experiments/m3_impedance.py": "cf422698dde7f320026b99d21f41adefda2b6f820ce968fc5af126ecc4dce1f4",
+    "controllers/admittance.py": "97c72ced4b377d9bfde4cd67f9eda23602f08c19f9d6110436481034d507a838",
+    "controllers/force_pi.py": "2f8bcf592742b7216f848e9f55452f34e380fb53c6de4a2427205bd098e9bb3c",
+    "controllers/impedance.py": "d770c4c0515ab48fafe6ee8da4633817507fa12d4123108f35ab7c14abc222dd"
+  }
+}

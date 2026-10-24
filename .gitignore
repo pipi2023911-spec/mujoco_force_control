@@ -1,10 +1,10 @@
 .venv/
 __pycache__/
 .pytest_cache/
+t/
+t_all/
 *.pyc
 results/
-docs/
-README.md
 README_LINUX_ROS.md
 AGENTS.md
 assets/mujoco_menagerie_panda/README.md

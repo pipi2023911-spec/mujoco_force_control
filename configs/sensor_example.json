@@ -1,0 +1,7 @@
+{
+  "sensor_noise_std_n": 0.05,
+  "sensor_bias_n": 0.0,
+  "sensor_delay_steps": 2,
+  "sensor_lpf_cutoff_hz": 20.0,
+  "sensor_seed": 42
+}

@@ -62,8 +62,27 @@ def test_real_pi_vs_baseline_and_feedback_trace(tmp_path):
     np.testing.assert_allclose(commands.feedback_time_s, commands.time_s, atol=1e-12)
     logged = pi.set_index("time_s").loc[commands.time_s, "normal_force_n"]
     np.testing.assert_allclose(commands.measured_force_n, logged.to_numpy(), atol=1e-12)
+    np.testing.assert_array_equal(commands.sensor_true_force_n, commands.sensor_filtered_force_n)
+    np.testing.assert_allclose(commands.sensor_source_time_s, commands.time_s, atol=1e-12)
     np.testing.assert_allclose(commands.force_error_n, c["force_target_n"] - commands.measured_force_n, atol=1e-12)
     assert commands.pi_offset_m.abs().max() <= c["pi_offset_limit_m"]
     assert commands.pi_i_m.abs().max() <= c["pi_integral_limit_m"]
     assert commands.pi_offset_m.diff().abs().max() <= c["pi_offset_speed_m_s"] * c["control_dt_s"] + 1e-12
     assert summary["PI与Baseline末秒RMSE比值"] < c["comparison_rmse_ratio_limit"]
+
+
+def test_sensor_channel_reaches_pi_and_preserves_truth(tmp_path):
+    c = {**load_config(), "sensor_noise_std_n": .01, "sensor_bias_n": .01,
+         "sensor_delay_steps": 2, "sensor_lpf_cutoff_hz": 20., "sensor_seed": 42}
+    output = run(c, tmp_path, mode="pi")
+    commands = pd.read_csv(output / "pi/run_001/control.csv")
+    truth = pd.read_csv(output / "pi/run_001/contact_force.csv")
+    np.testing.assert_allclose(commands.measured_force_n, commands.sensor_filtered_force_n, atol=1e-12)
+    logged = truth.set_index("time_s").loc[commands.time_s, "normal_force_n"]
+    np.testing.assert_allclose(commands.sensor_true_force_n, logged.to_numpy(), atol=1e-12)
+    expected = commands.sensor_true_force_n.to_numpy()[np.maximum(np.arange(len(commands)) - 2, 0)]
+    np.testing.assert_allclose(commands.sensor_delayed_force_n, expected, atol=1e-12)
+    np.testing.assert_allclose(commands.sensor_actual_delay_s.iloc[2:], .01, atol=1e-12)
+    assert not np.allclose(commands.measured_force_n, commands.sensor_true_force_n)
+    np.testing.assert_allclose(truth.force_error_n, c["force_target_n"] - truth.normal_force_n, atol=1e-12)
+    assert (output / "sensor_force.png").exists()

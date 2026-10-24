@@ -2,6 +2,13 @@
 import json
 
 LABELS = {
+    "sensor_noise_std_n": "测量噪声标准差_N", "sensor_bias_n": "测量偏置_N",
+    "sensor_delay_steps": "测量延迟控制步数", "sensor_lpf_cutoff_hz": "测量低通截止频率_Hz",
+    "sensor_seed": "测量噪声随机种子", "sensor_true_force_n": "传感器输入真实力_N",
+    "sensor_delayed_force_n": "延迟后真实力_N", "sensor_raw_force_n": "含噪原始测量力_N",
+    "sensor_filtered_force_n": "滤波后控制器测量力_N", "sensor_sample_time_s": "测量采样时刻_秒",
+    "sensor_source_time_s": "延迟信号源时刻_秒", "sensor_actual_delay_s": "实际测量延迟_秒",
+    "sensor_delay_ready": "测量延迟队列已填满",
     "display_speed": "图形播放速度倍率",
     "passed": "验收通过", "started_utc": "开始时间_UTC", "python": "Python版本",
     "platform": "运行平台", "versions": "软件版本", "model_dimensions": "模型维度",

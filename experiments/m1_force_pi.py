@@ -106,6 +106,18 @@ def plot_comparison(output, frames, commands, config):
     fig.tight_layout()
     fig.savefig(output / "position_command.png", dpi=config["plot_dpi"])
     plt.close(fig)
+    if "pi" in commands:
+        frame = commands["pi"]
+        fig, ax = plt.subplots(figsize=(config["plot_width_in"], config["plot_height_in"]))
+        for field, label in (("sensor_true_force_n", "真实力"), ("sensor_raw_force_n", "延迟与噪声后"),
+                             ("sensor_filtered_force_n", "控制器测量力")):
+            ax.plot(frame.time_s, frame[field], label=label if zh else field, alpha=.75)
+        ax.set(xlabel="仿真时间（秒）" if zh else "Time (s)", ylabel="法向力（N）" if zh else "Force (N)")
+        ax.grid(alpha=.25)
+        ax.legend()
+        fig.tight_layout()
+        fig.savefig(output / "sensor_force.png", dpi=config["plot_dpi"])
+        plt.close(fig)
 
 
 def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False, mode="both"):
@@ -159,5 +171,9 @@ if __name__ == "__main__":
     parser.add_argument("--viewer", action="store_true", help="每组空格开始，结束后关窗进入下一组")
     parser.add_argument("--speed", type=float, default=1.0, help="播放倍率")
     parser.add_argument("--snapshot", action="store_true", help="保存末态截图，需要 OpenGL")
+    parser.add_argument("--sensor-config", type=Path, help="可选的传感器参数 JSON，叠加到实验配置并保存")
     args = parser.parse_args()
-    run(load_config(args.config), viewer=args.viewer, speed=args.speed, snapshot=args.snapshot, mode=args.mode)
+    config = load_config(args.config)
+    if args.sensor_config is not None:
+        config.update(json.loads(args.sensor_config.read_text(encoding="utf-8")))
+    run(config, viewer=args.viewer, speed=args.speed, snapshot=args.snapshot, mode=args.mode)

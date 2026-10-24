@@ -14,6 +14,7 @@ import pandas as pd
 
 from common.chinese_output import configure_chinese_font, print_summary, save_csv
 from common.contact_feedback import contact_force
+from common.force_sensor import ForceSensor
 from common.contact_scene import build_scene, geometry_state, reset_home
 from common.experiment_view import ExperimentView
 from common.kinematics import approach_reference, orientation_error, solve_pose
@@ -67,6 +68,7 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
         log.flush()
     try:
         dt, period, duration = config["physics_dt_s"], config["control_dt_s"], config["duration_s"]
+        sensor = ForceSensor(config, period) if feedback_reference is not None else None
         if not np.isfinite([dt, period, duration]).all() or dt <= 0 or period < dt:
             raise ValueError("物理步长、控制周期或时长无效")
         steps, substeps = round(duration / dt), round(period / dt)
@@ -165,7 +167,11 @@ def run(config, output_root=None, viewer=False, speed=1.0, snapshot=False,
                     target, phase = reference_function(float(data.time), start_pos, normal, config)
                     control_details = {}
                     if feedback_reference is not None:
-                        target, phase, control_details = feedback_reference(float(data.time), start_pos, normal, config, samples[-1])
+                        sensed_force, sensor_details = sensor.step(samples[-1]["normal_force_n"], float(data.time))
+                        # 只替换送往控制器的副本；真实接触日志、物理检查和性能评价保持真值。
+                        feedback = {**samples[-1], "normal_force_n": sensed_force}
+                        target, phase, control_details = feedback_reference(float(data.time), start_pos, normal, config, feedback)
+                        control_details.update(sensor_details)
                     arm_command = solve_pose(model, reference, site, arm, target, start_rotation, config)
                     if np.max(np.abs(arm_command - previous_arm)) > config["max_joint_reference_speed_rad_s"] * period:
                         raise ValueError("关节位置参考变化率超限")
