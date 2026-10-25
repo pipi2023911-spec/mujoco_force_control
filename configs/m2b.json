@@ -1,0 +1,14 @@
+{
+  "base_config": "configs/m2.json",
+  "experiment_label": "M2b 导纳目标力跟踪",
+  "admittance_force_target_n": 5.0,
+  "tracking_tolerance_n": 0.1,
+  "settling_min_duration_s": 0.5,
+  "steady_rmse_limit_n": 0.1,
+  "cases": {
+    "k0_d1500": {"admittance_stiffness_n_m": 0.0, "admittance_damping_ns_m": 1500.0},
+    "k0_d3000": {"admittance_stiffness_n_m": 0.0, "admittance_damping_ns_m": 3000.0},
+    "k0_d6000": {"admittance_stiffness_n_m": 0.0, "admittance_damping_ns_m": 6000.0},
+    "k2000": {"admittance_stiffness_n_m": 2000.0, "admittance_damping_ns_m": 3000.0}
+  }
+}

@@ -34,7 +34,9 @@ class AdmittanceReference:
         target, phase = approach_reference(time_s, initial_position, normal, config)
         details = {"external_force_n": measured["normal_force_n"], "feedback_time_s": measured["time_s"],
                    "admittance_x_m": 0.0, "admittance_v_m_s": 0.0, "admittance_a_m_s2": 0.0,
-                   "admittance_limited": False, "admittance_active": False}
+                   "admittance_limited": False, "admittance_active": False,
+                   "admittance_force_target_n": self.controller.target_force,
+                   "admittance_force_error_n": measured["normal_force_n"] - self.controller.target_force}
         if time_s + 1e-10 >= config["admittance_start_s"]:
             if not self.active:
                 if self.contact_duration < config["contact_confirm_s"]:

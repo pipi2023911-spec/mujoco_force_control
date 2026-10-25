@@ -49,11 +49,22 @@ python -m experiments.m1_sensor_study
 python -m experiments.m0_04_depth_comparison
 python -m experiments.m0_05_contact_exit
 python -m experiments.m2_admittance --case reference
+python -m experiments.m2b_admittance_force
 python -m experiments.m3_impedance --case probe
 python -m experiments.c1_wipe
 ```
 
 M2/M3 的 `--case all` 运行全部既有工况，先通过单组与基础检查，再进行批量实验。M2 当前评价受力退让与虚拟弹簧平衡，不应解释为 5 N 力跟踪。
+
+M2b才显式设置目标力，区分K=0跟踪与K>0平衡，见[导纳目标力](admittance_force.md)。原C1默认工况仍失败，不以基础循环检查成功代替最终判定。独立成功工况与附加分析入口：
+
+```powershell
+python -m experiments.c1_wipe --config configs/c1_compliant.json
+python -m experiments.pi_gain_design
+python -m experiments.m1_gain_ablation
+```
+
+新C1配置代表不同接触模型，不是原工况的修复；结果分别写入C1_Wipe、K、A目录。
 
 需要交互观察时在实验后增加 `--viewer`：空格开始，结束后关闭窗口；`--speed` 只改变显示播放倍率；`--snapshot` 保存末态图，需要可用的 OpenGL。默认无窗口运行不要求人工点击。
 

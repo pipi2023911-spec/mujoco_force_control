@@ -1,4 +1,4 @@
-"""一维导纳 M*a+D*v+K*x=F_ext；x正方向与外力一致，不使用目标力误差。"""
+"""一维导纳 M*a+D*v+K*x=F_ext-F_target；默认目标0兼容原受力退让。"""
 import numpy as np
 
 
@@ -9,9 +9,11 @@ class Admittance:
         self.stiffness = config["admittance_stiffness_n_m"]
         self.limit = config["admittance_offset_limit_m"]
         self.speed = config["admittance_speed_limit_m_s"]
-        values = [self.mass, self.damping, self.stiffness, self.limit, self.speed]
-        if not np.isfinite(values).all() or min(values) <= 0:
-            raise ValueError("虚拟质量、阻尼、刚度和限幅必须是有限正数")
+        self.target_force = config.get("admittance_force_target_n", 0.)
+        values = [self.mass, self.damping, self.limit, self.speed]
+        if (not np.isfinite([*values, self.stiffness, self.target_force]).all()
+                or min(values) <= 0 or self.stiffness < 0):
+            raise ValueError("质量、阻尼、限幅必须有限正数，刚度非负，目标力有限")
         self.position = 0.0
         self.velocity = 0.0
 
@@ -22,7 +24,8 @@ class Admittance:
         if self.stiffness * dt**2 / self.mass + 2 * self.damping * dt / self.mass >= 4:
             raise ValueError("当前周期不满足虚拟系统半隐式积分稳定条件")
         old_position, old_velocity = self.position, self.velocity
-        acceleration = (external_force - self.damping * old_velocity - self.stiffness * old_position) / self.mass
+        error = external_force if self.target_force == 0 else external_force - self.target_force
+        acceleration = (error - self.damping * old_velocity - self.stiffness * old_position) / self.mass
         raw_velocity = old_velocity + acceleration * dt
         velocity = float(np.clip(raw_velocity, -self.speed, self.speed))
         raw_position = old_position + velocity * dt
@@ -32,4 +35,6 @@ class Admittance:
         self.velocity = (position - old_position) / dt
         self.position = position
         return position, {"admittance_x_m": position, "admittance_v_m_s": self.velocity,
-                          "admittance_a_m_s2": acceleration, "admittance_limited": bool(limited)}
+                          "admittance_a_m_s2": acceleration, "admittance_limited": bool(limited),
+                          "admittance_force_target_n": self.target_force,
+                          "admittance_force_error_n": float(error)}

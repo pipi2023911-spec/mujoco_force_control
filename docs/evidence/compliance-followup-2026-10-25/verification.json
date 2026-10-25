@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-25",
+  "archives": {
+    "m2b_raw.zip": {
+      "bytes": 6574897,
+      "sha256": "cd00d9e2a1ad6c0b00f605f25165718eb0f1d647208f8257a57c99aece30593b",
+      "entries": 54
+    },
+    "c1_raw.zip": {
+      "bytes": 10117163,
+      "sha256": "c651069f06daf551af862a9ff75c863d33e5d62bb82ce47c5626dd782d74b50c",
+      "entries": 34
+    },
+    "gain_design_raw.zip": {
+      "bytes": 6714588,
+      "sha256": "360fa11b7127133e25ab7f734977a1999dff38798bf854322bc438aca321e8e4",
+      "entries": 75
+    },
+    "ablation_raw.zip": {
+      "bytes": 22088892,
+      "sha256": "226ae16acefa0ea2db4235ca080dc44f3707d476c1b9ceea00c38f4fd48d70c1",
+      "entries": 210
+    }
+  },
+  "regression": {
+    "passed": 71,
+    "failed": 1,
+    "failure": "原始C1仍未解决，原断言保留"
+  },
+  "c1_root_cause_status": "发现接触阻抗敏感性与抬离现象，尚无原工况修复或唯一根因证明",
+  "c1_diagnostic_cases": 20,
+  "local_first_order_check": {
+    "k_eff_n_per_m": 7115.530051421061,
+    "tau_s": 0.5351255599950175,
+    "initial_force_n": 5.964951341628022,
+    "band_n": 0.1,
+    "predicted_band_settling_s": 1.2130801405227325,
+    "observed_band_settling_s": 1.2210000000003287,
+    "scope": "同初态局部近似的一次核对；不是独立泛化验证"
+  }
+}

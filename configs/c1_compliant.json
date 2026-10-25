@@ -1,0 +1,11 @@
+{
+  "base_config": "configs/m1.json",
+  "experiment_label": "C1 柔顺接触工况对照（原工况仍独立保留）",
+  "duration_s": 17.0,
+  "wipe_start_s": 10.0,
+  "wipe_length_m": 0.01,
+  "wipe_leg_duration_s": 3.0,
+  "max_tangential_error_m": 0.003,
+  "endpoint_tolerance_m": 0.001,
+  "contact_solimp": [0.5, 0.95, 0.001]
+}

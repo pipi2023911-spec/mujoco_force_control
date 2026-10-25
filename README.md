@@ -23,6 +23,7 @@ Python 3.12，依赖版本见 [requirements.txt](requirements.txt)。默认无�
 - [测试说明](docs/testing.md)：数值测试、物理仿真、失败记录与验收边界。
 - [力控实验方案](docs/force_control.md)：基线、传感器、自适应 PI 和鲁棒性实验。
 - [在线模糊 PI](docs/fuzzy_pi.md)：隶属函数、规则、在线更新、状态衔接与验证。
+- [导纳目标力跟踪](docs/admittance_force.md)：默认兼容、K=0与K>0分项验收。
 
 ```powershell
 python -m venv .venv
@@ -51,7 +52,7 @@ python -m venv .venv
 | `common/experiment_view.py` | 交互窗口、空格开始、播放倍率与显示/物理数据隔离 |
 | `controllers/force_pi.py` | 固定 PI、积分贡献、无突跳初始化、抗积分饱和、幅值/速度限制 |
 | `controllers/fuzzy_pi.py` | Sugeno 模糊推理、在线 Kp/Ki 更新、比例变化补偿，复用 PI 限制 |
-| `controllers/admittance.py` | 数值导纳状态更新、位移/速度限幅；不是目标力跟踪实验 |
+| `controllers/admittance.py` | 导纳、可选目标力与K=0；默认目标0保留M2退让行为 |
 | `controllers/impedance.py` | 笛卡尔阻抗、零空间与力矩限幅 |
 | `experiments/m0_01_model_inspection.py` | 模型接口审核、home 保持、结果目录与 JSON 工具 |
 | `experiments/m0_02_contact_scene.py` | 工具和接触板放置、几何一致性与场景显示 |
@@ -62,6 +63,9 @@ python -m venv .venv
 | `experiments/m1_fuzzy_comparison.py` | 固定/模糊 PI 的六条件十二次仿真、实际增益与真实力对照 |
 | `experiments/m1_sensor_study.py` | 固定 PI 单因素、三种子组合、大延迟实验和真实力汇总 |
 | `experiments/m2_admittance.py` | 多组虚拟质量/阻尼/刚度导纳对照与平衡评价 |
+| `experiments/m2b_admittance_force.py` | K=0目标力跟踪与K>0弹簧平衡分项实验 |
+| `experiments/pi_gain_design.py` | 参考位移—力局部有效刚度拟合、PI时间常数估算 |
+| `experiments/m1_gain_ablation.py` | 固定PI、固定Ki提高10%与模糊PI同条件消融 |
 | `experiments/m3_impedance.py` | 独立力矩循环、偏置补偿验证和阻抗对照 |
 | `experiments/c1_wipe.py` | 切向往返路径与法向 PI、路径/接触评价 |
 | `configs/m0_01.json` | 模型来源、home、关节与基础仿真参数 |
@@ -72,8 +76,10 @@ python -m venv .venv
 | `configs/m1.json` | 5 N 固定 PI、接管时间、限幅与验收阈值 |
 | `configs/sensor_example.json` | 假设的测量扰动组合示例，不是硬件标定数据 |
 | `configs/m2.json` | 导纳基准及参数对照组 |
+| `configs/m2b.json` | 目标力、三组K=0阻尼与非零刚度对照 |
 | `configs/m3.json` | 阻抗刚度/阻尼、力矩限制与实验工况 |
 | `configs/c1_wipe.json` | 往返路径、接触保持与轨迹验收 |
+| `configs/c1_compliant.json` | 独立柔顺接触工况，不替换原C1环境及失败 |
 | `scripts/run_m0_01.ps1` | Windows 模型基础实验入口 |
 | `scripts/run_m0_01.sh` | Linux 模型基础实验入口 |
 | `tests/test_force_sensor.py` | 无 MuJoCo 的测量数值测试 |
@@ -86,6 +92,8 @@ python -m venv .venv
 | `tests/test_m0_05.py` | 接触退出与力消失检查 |
 | `tests/test_m1.py` | PI 限幅、接管、Baseline 对照、测量入口与真值保留 |
 | `tests/test_m2.py` | 导纳数值行为与物理对照 |
+| `tests/test_m2b.py` | 目标力方向、K=0及Panda目标跟踪/弹簧平衡、限幅拒绝 |
+| `tests/test_gain_design.py` | 拟合单位、斜率与不适用数据检查 |
 | `tests/test_m3.py` | 阻抗数值行为、执行器与物理实验 |
 | `tests/test_c1_wipe.py` | 往返轨迹、接触和端点检查 |
 | `tests/test_presentation.py` | 中文副本和窗口隔离测试 |
@@ -94,6 +102,7 @@ python -m venv .venv
 | `docs/testing.md` | 测试分层、证据位置与限制 |
 | `docs/force_control.md` | 实验顺序、评价定义与开发边界 |
 | `docs/fuzzy_pi.md` | 在线模糊 PI 算法、参数、运行和证据要求 |
+| `docs/admittance_force.md` | 导纳目标力接口与分项验收 |
 | `docs/evidence/README.md` | 固定 PI、测量接入与既有 C1 失败的实测记录 |
 | `docs/evidence/pi_sensor_metrics.json` | 统计、源码摘要和原始归档校验值 |
 | `docs/evidence/pi_sensor_raw_2026-10-24.zip` | 选定实验的原始数据、配置、日志和曲线 |
@@ -105,6 +114,9 @@ python -m venv .venv
 | `docs/evidence/fuzzy-pi-2026-10-25/comparison.csv`、`study_config.json`、`study_summary.json` | 十二次固定/模糊对照统计、配置和完成状态 |
 | `docs/evidence/fuzzy-pi-2026-10-25/verification.json`、`raw_data.zip` | 实际增益、限幅、源码和噪声配对核对及原始归档 |
 | `docs/evidence/fuzzy-pi-2026-10-25/online_gains.png`、`force_errors.png` | 实际在线增益和真实力误差曲线 |
+| `docs/evidence/compliance-followup-2026-10-25/README.md` | 导纳、C1成败、局部拟合与固定增益消融记录 |
+| `docs/evidence/compliance-followup-2026-10-25/*.csv`、`verification.json`、`c1_diagnostics.json` | 各组指标、诊断参数、归档校验与局部模型核对 |
+| `docs/evidence/compliance-followup-2026-10-25/*.zip`、`*.png` | 导纳/C1/拟合/消融原始数据和曲线，详见目录说明 |
 | `assets/MODEL_SOURCE.json` | 上游仓库、提交和许可证记录 |
 
 上游资源位于 `assets/mujoco_menagerie_panda/`：`panda.xml`、`panda_nohand.xml`、`hand.xml` 分别为机械臂/无手臂/手部模型；`scene.xml` 为基础场景；`mjx_panda.xml`、`mjx_panda_nohand.xml`、`mjx_hand.xml`、`mjx_scene.xml`、`mjx_single_cube.xml` 为上游 MJX 资源，不是本项目 Python 力控入口。`assets/*.obj`、`assets/*.stl` 为显示/碰撞网格；`LICENSE` 保留 Apache-2.0 许可证。
@@ -119,4 +131,6 @@ python -m venv .venv
 
 [9 组固定 PI 测量扰动实验](docs/evidence/sensor-study-2026-10-25/README.md)保留单因素、三种子组合及偏置问题。
 
-[在线模糊 PI 闭环验收](docs/evidence/fuzzy-pi-2026-10-25/README.md)包含十二次配对、实际 Kp/Ki 曲线与不利结果。当前完整回归为 **64 PASS、1 个既有 C1 连续接触 FAIL**，不能称全仓库测试全绿或所有条件都优于固定 PI。
+[在线模糊 PI 闭环验收](docs/evidence/fuzzy-pi-2026-10-25/README.md)包含十二次配对、实际Kp/Ki曲线与不利结果。
+
+[柔顺遗留项实测](docs/evidence/compliance-followup-2026-10-25/README.md)增加M2b、局部有效刚度和固定增益消融。当前完整回归为 **71 PASS、1个原C1 FAIL**。新柔顺接触工况通过不等于原C1修复，该问题仍未关闭，不能宣布柔顺项目全部完成。

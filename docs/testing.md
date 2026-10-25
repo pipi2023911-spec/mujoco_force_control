@@ -46,4 +46,6 @@ python -m experiments.m1_force_pi --mode pi --sensor-config configs/sensor_examp
 
 在线模糊 PI 增加 10 项数值/物理测试，完整测试已实际重跑为 **64 PASS、1 个既有 C1 FAIL**；以上 54/1 为传感器阶段记录。[模糊 PI 验收](evidence/fuzzy-pi-2026-10-25/README.md)保存 12 次配对、CLI 和完整回归输出。固定/模糊对照使用同一验收阈值；种子 42 的模糊末秒误差较差，保留在报告中。
 
+新增M2b、独立柔顺C1和局部拟合测试后的最新完整回归为 **71 PASS、1个原C1 FAIL**。[遗留项记录](evidence/compliance-followup-2026-10-25/README.md)明确新接触模型通过不代表旧模型已修复；原C1配置、阈值和失败断言均保留。
+
 无窗口仿真通过不能代表交互图形窗口已人工验证，更不能代表真机。项目没有真机驱动，未进行真实传感器标定、机器人闭环运动或现场停止验证。

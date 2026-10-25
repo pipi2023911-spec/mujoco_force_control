@@ -1,5 +1,6 @@
 """C1-01 最小验证：路径、法向、PI 动态方向及真实仿真反馈链路。"""
 import json
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -84,3 +85,14 @@ def test_real_short_round_trip_and_feedback(tmp_path):
     frozen[["tool_x_m", "tool_y_m"]] = actual[0]
     assert not motion_metrics(frozen, c)["连续接触与实际往返验收"]
     assert metrics["passed"], f"实际连续接触任务未达标：{metrics}"
+
+
+def test_compliant_contact_round_trip_is_separate_from_legacy(tmp_path):
+    c = load_config(Path("configs/c1_compliant.json"))
+    output = run(c, tmp_path)
+    metrics = json.loads((output / "c1_metrics.json").read_text(encoding="utf-8"))
+    assert metrics["passed"]
+    assert metrics["运动接触保持率"] == 1.
+    assert metrics["运动采样数"] == 6000
+    assert metrics["运动法向力RMSE_N"] < .3  # 新工况的附加检查，不改旧验收。
+    assert load_config()["contact_solimp"] == [.9, .95, .001]
