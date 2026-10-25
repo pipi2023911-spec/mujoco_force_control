@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-25",
+  "archive_sha256": "cbd7ed79f42180c8d8df9165aa88db553708c152ba5a00b9a13cae21286ba9eb",
+  "archive_bytes": 16331262,
+  "entries": 161,
+  "runner_sha256": "fa42a768f04c358c0a4d61c101d0b6fee58a5b10ab735bcb6ae6efd8145a7633",
+  "scope": "9个固定PI仿真实验，同一接触参数；不是模糊PI/多刚度/真机",
+  "regression": "完整回归52通过1个既有C1失败，另加统计测试2通过",
+  "omitted": "中文重复副本、joint_state.csv；全量关节状态保留在本地原始目录"
+}

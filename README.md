@@ -57,6 +57,7 @@ python -m venv .venv
 | `experiments/m0_04_depth_comparison.py` | 多压入参考实验、力重构与趋势分析 |
 | `experiments/m0_05_contact_exit.py` | 接近、保持和退出接触实验 |
 | `experiments/m1_force_pi.py` | 固定位置/固定 PI 对照、真值跟踪指标与测量通道曲线 |
+| `experiments/m1_sensor_study.py` | 固定 PI 单因素、三种子组合、大延迟实验和真实力汇总 |
 | `experiments/m2_admittance.py` | 多组虚拟质量/阻尼/刚度导纳对照与平衡评价 |
 | `experiments/m3_impedance.py` | 独立力矩循环、偏置补偿验证和阻抗对照 |
 | `experiments/c1_wipe.py` | 切向往返路径与法向 PI、路径/接触评价 |
@@ -73,6 +74,7 @@ python -m venv .venv
 | `scripts/run_m0_01.ps1` | Windows 模型基础实验入口 |
 | `scripts/run_m0_01.sh` | Linux 模型基础实验入口 |
 | `tests/test_force_sensor.py` | 无 MuJoCo 的测量数值测试 |
+| `tests/test_sensor_study.py` | 提前终止不生成末秒指标、失败轨迹保留不放宽验收 |
 | `tests/test_m0_01.py` | 模型、状态和 home 保持测试 |
 | `tests/test_m0_02.py` | 场景几何与接触放置测试 |
 | `tests/test_m0_03.py` | 真实接触坐标变换、力重构、基础运行及故障留证 |
@@ -91,6 +93,9 @@ python -m venv .venv
 | `docs/evidence/pi_sensor_metrics.json` | 统计、源码摘要和原始归档校验值 |
 | `docs/evidence/pi_sensor_raw_2026-10-24.zip` | 选定实验的原始数据、配置、日志和曲线 |
 | `docs/evidence/fixed_pi.png`、`docs/evidence/sensor_force.png` | 原始仿真数据导出的对照图 |
+| `docs/evidence/sensor-study-2026-10-25/README.md` | 9 组测量扰动实验、偏置和延迟结论边界 |
+| `docs/evidence/sensor-study-2026-10-25/comparison.csv`、`study_summary.json`、`study_config.json` | 每组真值指标、三种子统计与全部实验参数 |
+| `docs/evidence/sensor-study-2026-10-25/raw_data.zip`、`manifest.json`、`sensor_study.png` | 9 组原始证据、哈希清单与汇总图 |
 | `assets/MODEL_SOURCE.json` | 上游仓库、提交和许可证记录 |
 
 上游资源位于 `assets/mujoco_menagerie_panda/`：`panda.xml`、`panda_nohand.xml`、`hand.xml` 分别为机械臂/无手臂/手部模型；`scene.xml` 为基础场景；`mjx_panda.xml`、`mjx_panda_nohand.xml`、`mjx_hand.xml`、`mjx_scene.xml`、`mjx_single_cube.xml` 为上游 MJX 资源，不是本项目 Python 力控入口。`assets/*.obj`、`assets/*.stl` 为显示/碰撞网格；`LICENSE` 保留 Apache-2.0 许可证。
@@ -102,3 +107,5 @@ python -m venv .venv
 在线模糊增益、自适应对照、多环境接触标定和重复鲁棒性统计仍需独立实现与验收。AI 辅助代码的核心逻辑需由使用者理解、修改并通过实验验证。
 
 [固定 PI 与测量通道实测记录](docs/evidence/README.md)包含默认兼容性验证和原始数据；完整测试为 52 项通过、1 项既有 C1 连续接触失败，不能称全部实验通过。
+
+[9 组固定 PI 测量扰动实验](docs/evidence/sensor-study-2026-10-25/README.md)已完成单因素与三种子组合。原回归 52 PASS/1 FAIL，加统计专项 2 PASS，合计当前 54 PASS/1 FAIL；偏置误差仍需关注，不能把这些结果称为已完成模糊自适应或多刚度鲁棒性验证。

@@ -30,6 +30,12 @@ python -m experiments.m1_force_pi --mode pi --sensor-config configs/sensor_examp
 
 先将示例复制为独立配置，逐项启用噪声、偏置、延迟、低通，再做组合。关闭扰动使用噪声/偏置/延迟为 0、低通为 `null`；省略所有字段也是默认直通。每次运行重建传感器，随机种子相同则噪声序列可重复。
 
+```powershell
+python -m experiments.m1_sensor_study
+```
+
+该入口在 `results/S/run_XXX/` 运行 9 组固定 PI：无扰动、仅噪声、仅偏置、仅延迟、仅低通、三种子组合和大延迟。每组参数写入 `study_config.json`，子目录保留原实验的通过/失败判定；顶层 `comparison.csv`、`study_summary.json`、`sensor_study.png` 汇总真值指标。批量命令正常结束表示完成记录，不等于每组通过，应检查汇总通过数和失败原因。提前终止的实验不生成虚假的末秒统计。参数不是硬件规格，不是安全延迟上限。
+
 ## 其余现有实验
 
 ```powershell
