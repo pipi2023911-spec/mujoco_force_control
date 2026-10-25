@@ -73,6 +73,12 @@ python -m experiments.c1_contact_feasibility
 
 第一条用于复现原3秒失败，预期抛出验收异常并保存失败数据；不要把退出异常当成没有产出。第二条生成35组局部接触快照，输出到`results/V/run_XXX/`；它核对逆/正向接触与执行器范围，不是运行闭环控制器。定义、限制与失败材料见[C1诊断](c1_contact_feasibility.md)。
 
+```powershell
+python -m experiments.c1_sensor_study
+```
+
+该入口在`results/CS/run_XXX/`逐组运行无扰动、噪声、偏置、延迟、低通、三种子组合和大延迟C1。它复用原测量模型与固定PI，不改变基线接触参数或阈值。批量正常结束只表示完成记录；查看`comparison.csv`的实际任务判定和力指标，详见[C1测量扰动](c1_sensor_study.md)。
+
 需要交互观察时在实验后增加 `--viewer`：空格开始，结束后关闭窗口；`--speed` 只改变显示播放倍率；`--snapshot` 保存末态图，需要可用的 OpenGL。默认无窗口运行不要求人工点击。
 
 ## 结果与排错

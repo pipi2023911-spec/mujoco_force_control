@@ -1,0 +1,230 @@
+{
+  "base": {
+    "model": "assets/mujoco_menagerie_panda/scene.xml",
+    "home_key": "home",
+    "physics_dt_s": 0.001,
+    "control_dt_s": 0.005,
+    "duration_s": 27.0,
+    "joint_limit_tolerance": 1e-05,
+    "max_arm_drift_rad": 0.05,
+    "max_arm_speed_rad_s": 1.0,
+    "max_final_arm_speed_rad_s": 0.01,
+    "arm_joints": [
+      "joint1",
+      "joint2",
+      "joint3",
+      "joint4",
+      "joint5",
+      "joint6",
+      "joint7"
+    ],
+    "finger_joints": [
+      "finger_joint1",
+      "finger_joint2"
+    ],
+    "base_config": "configs/m1.json",
+    "robot_xml": "assets/mujoco_menagerie_panda/panda.xml",
+    "tool_parent": "hand",
+    "tool_center_local_m": [
+      0.0,
+      0.0,
+      0.16
+    ],
+    "tool_radius_m": 0.015,
+    "tool_mass_kg": 0.05,
+    "shaft_start_local_m": [
+      0.0,
+      0.0,
+      0.04
+    ],
+    "shaft_radius_m": 0.004,
+    "shaft_mass_kg": 0.02,
+    "initial_gap_m": 0.02,
+    "minimum_gap_m": 0.005,
+    "normal_world": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "plate_half_size_m": [
+      0.12,
+      0.12,
+      0.01
+    ],
+    "contact_friction": [
+      0.8,
+      0.005,
+      0.0001
+    ],
+    "contact_solref": [
+      0.02,
+      1.0
+    ],
+    "contact_solimp": [
+      0.9,
+      0.95,
+      0.001
+    ],
+    "distance_query_max_m": 2.0,
+    "geometry_tolerance_m": 1e-06,
+    "render_width": 960,
+    "render_height": 720,
+    "camera_lookat_m": [
+      0.35,
+      0.0,
+      0.4
+    ],
+    "camera_distance_m": 1.65,
+    "camera_azimuth_deg": 135,
+    "camera_elevation_deg": -20,
+    "scene_config": "configs/m0_02.json",
+    "settle_duration_s": 1.0,
+    "approach_duration_s": 6.0,
+    "max_reference_speed_m_s": 0.008,
+    "max_joint_reference_speed_rad_s": 0.2,
+    "ik_damping": 0.001,
+    "ik_orientation_weight_m": 0.2,
+    "ik_position_tolerance_m": 1e-06,
+    "ik_orientation_tolerance_rad": 1e-05,
+    "ik_max_iterations": 30,
+    "ik_max_step_rad": 0.02,
+    "joint_limit_margin_rad": 0.001,
+    "max_measured_force_n": 30.0,
+    "max_penetration_m": 0.002,
+    "max_lateral_drift_m": 0.003,
+    "max_orientation_error_rad": 0.02,
+    "contact_detection_force_n": 0.1,
+    "minimum_hold_mean_force_n": 0.1,
+    "minimum_hold_contact_fraction": 0.99,
+    "hold_metrics_window_s": 1.0,
+    "zero_force_tolerance_n": 1e-09,
+    "plot_width_in": 7.2,
+    "plot_height_in": 3.8,
+    "plot_dpi": 180,
+    "approach_distance_m": 0.014,
+    "viewer_force_length_m_per_n": 0.01,
+    "display_interval_s": 0.5,
+    "experiment_label": "C1-01 水平面恒力往返",
+    "force_target_n": 5.0,
+    "force_control_start_s": 8.0,
+    "contact_confirm_s": 0.5,
+    "pi_kp_m_per_n": 2e-05,
+    "pi_ki_m_per_ns": 0.0003,
+    "pi_integral_limit_m": 0.001,
+    "pi_offset_limit_m": 0.0008,
+    "pi_offset_speed_m_s": 0.0005,
+    "tracking_tolerance_n": 0.1,
+    "settling_min_duration_s": 0.5,
+    "steady_rmse_limit_n": 0.1,
+    "steady_force_std_limit_n": 0.05,
+    "comparison_rmse_ratio_limit": 0.2,
+    "wipe_start_s": 10.0,
+    "wipe_length_m": 0.01,
+    "wipe_leg_duration_s": 8.0,
+    "max_tangential_error_m": 0.003,
+    "endpoint_tolerance_m": 0.001,
+    "pi_algorithm": "fixed"
+  },
+  "cases": [
+    [
+      "zero",
+      "无扰动",
+      {
+        "sensor_noise_std_n": 0.0,
+        "sensor_bias_n": 0.0,
+        "sensor_delay_steps": 0,
+        "sensor_lpf_cutoff_hz": null,
+        "sensor_seed": 42
+      }
+    ],
+    [
+      "noise",
+      "仅噪声",
+      {
+        "sensor_noise_std_n": 0.05,
+        "sensor_bias_n": 0.0,
+        "sensor_delay_steps": 0,
+        "sensor_lpf_cutoff_hz": null,
+        "sensor_seed": 42
+      }
+    ],
+    [
+      "bias",
+      "仅偏置",
+      {
+        "sensor_noise_std_n": 0.0,
+        "sensor_bias_n": 0.1,
+        "sensor_delay_steps": 0,
+        "sensor_lpf_cutoff_hz": null,
+        "sensor_seed": 42
+      }
+    ],
+    [
+      "delay",
+      "仅延迟",
+      {
+        "sensor_noise_std_n": 0.0,
+        "sensor_bias_n": 0.0,
+        "sensor_delay_steps": 4,
+        "sensor_lpf_cutoff_hz": null,
+        "sensor_seed": 42
+      }
+    ],
+    [
+      "filter",
+      "仅低通",
+      {
+        "sensor_noise_std_n": 0.0,
+        "sensor_bias_n": 0.0,
+        "sensor_delay_steps": 0,
+        "sensor_lpf_cutoff_hz": 20.0,
+        "sensor_seed": 42
+      }
+    ],
+    [
+      "combo42",
+      "组合种子42",
+      {
+        "sensor_noise_std_n": 0.05,
+        "sensor_bias_n": 0.0,
+        "sensor_delay_steps": 2,
+        "sensor_lpf_cutoff_hz": 20.0,
+        "sensor_seed": 42
+      }
+    ],
+    [
+      "combo43",
+      "组合种子43",
+      {
+        "sensor_noise_std_n": 0.05,
+        "sensor_bias_n": 0.0,
+        "sensor_delay_steps": 2,
+        "sensor_lpf_cutoff_hz": 20.0,
+        "sensor_seed": 43
+      }
+    ],
+    [
+      "combo44",
+      "组合种子44",
+      {
+        "sensor_noise_std_n": 0.05,
+        "sensor_bias_n": 0.0,
+        "sensor_delay_steps": 2,
+        "sensor_lpf_cutoff_hz": 20.0,
+        "sensor_seed": 44
+      }
+    ],
+    [
+      "stress",
+      "大延迟压力工况",
+      {
+        "sensor_noise_std_n": 0.0,
+        "sensor_bias_n": 0.0,
+        "sensor_delay_steps": 100,
+        "sensor_lpf_cutoff_hz": null,
+        "sensor_seed": 42
+      }
+    ]
+  ],
+  "runner_sha256": "2baa64926ba8fb8defbc7532b2b19bc2990c47b424c46a5b3eada527faf46f9f"
+}

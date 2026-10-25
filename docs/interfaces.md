@@ -52,3 +52,5 @@
 `wipe_displacement(t, config)`输出X方向位移（m）和速度（m/s），采用五次曲线；`wipe_start_s`为起点，`wipe_leg_duration_s`为单程时间，`wipe_length_m`为单程长度。主配置为10秒开始、8秒单程、10 mm，26秒回到起点，27秒结束。`c1_wipe.run`输出`c1_metrics.json`与最终`summary.json`；基础循环检查通过后仍须通过连续接触与实际往返判定。原3秒配置失败时抛出`ValueError`，已有数据保留。
 
 `c1_contact_feasibility.run(output_root=None)`返回新建结果目录，默认`results/V/run_XXX/`。`local_state`按局部TCP位姿、切向速度与零关节加速度构造诊断状态；逆动力学结果通过原七轴位置执行器回代，手指残差单独补齐，不向机械臂额外施加广义力。`force_envelope.csv`记录速度、几何压入量、正逆法向力差、正向加速度、力矩余量及位置命令范围；`summary.json`的`passed`仅代表这组诊断回代检查通过。离线诊断不修改主控制器或场景配置，也不代表闭环稳定，详见[C1诊断定义](c1_contact_feasibility.md)。
+
+`c1_sensor_study.run(output_root=None)`返回九工况结果目录，默认`results/CS/run_XXX/`。`analyze(frame, config)`以物理采样计算运动段指标：`完整时长`与`完整运动段`分开记录，`接触丢失累计_s`和`最长连续丢失_s`单位为秒，`首次丢失时刻_s`为仿真绝对时间、无丢失时为null。未完成运动段不生成全段RMSE与往返指标。`任务验收通过`来自原C1最终摘要，不根据汇总重新放宽或增加力误差门槛；见[测量实验接口与判定](c1_sensor_study.md)。
