@@ -56,7 +56,7 @@ python -m experiments.c1_wipe
 
 M2/M3 的 `--case all` 运行全部既有工况，先通过单组与基础检查，再进行批量实验。M2 当前评价受力退让与虚拟弹簧平衡，不应解释为 5 N 力跟踪。
 
-M2b才显式设置目标力，区分K=0跟踪与K>0平衡，见[导纳目标力](admittance_force.md)。原C1默认工况仍失败，不以基础循环检查成功代替最终判定。独立成功工况与附加分析入口：
+M2b才显式设置目标力，区分K=0跟踪与K>0平衡，见[导纳目标力](admittance_force.md)。C1默认使用原接触模型、5 N、10 mm往返、8秒单程，总时长27秒；物理步长1 ms、控制周期5 ms。独立接触工况与附加分析入口：
 
 ```powershell
 python -m experiments.c1_wipe --config configs/c1_compliant.json
@@ -64,7 +64,14 @@ python -m experiments.pi_gain_design
 python -m experiments.m1_gain_ablation
 ```
 
-新C1配置代表不同接触模型，不是原工况的修复；结果分别写入C1_Wipe、K、A目录。
+`c1_compliant.json`仍是不同接触模型、3秒单程的独立对照；结果分别写入C1_Wipe、K、A目录。
+
+```powershell
+python -m experiments.c1_wipe --config configs/c1_wipe_legacy_3s.json
+python -m experiments.c1_contact_feasibility
+```
+
+第一条用于复现原3秒失败，预期抛出验收异常并保存失败数据；不要把退出异常当成没有产出。第二条生成35组局部接触快照，输出到`results/V/run_XXX/`；它核对逆/正向接触与执行器范围，不是运行闭环控制器。定义、限制与失败材料见[C1诊断](c1_contact_feasibility.md)。
 
 需要交互观察时在实验后增加 `--viewer`：空格开始，结束后关闭窗口；`--speed` 只改变显示播放倍率；`--snapshot` 保存末态图，需要可用的 OpenGL。默认无窗口运行不要求人工点击。
 

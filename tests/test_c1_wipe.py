@@ -62,8 +62,8 @@ def test_real_short_round_trip_and_feedback(tmp_path):
     commands = pd.read_csv(output/"control.csv")
     combined = pd.read_csv(output/"tracking.csv")
     metrics = json.loads((output/"c1_metrics.json").read_text(encoding="utf-8"))
-    assert len(frame) == 17001
-    assert metrics["运动采样数"] == 6000
+    assert len(frame) == round(c["duration_s"] / c["physics_dt_s"]) + 1
+    assert metrics["运动采样数"] == round(2 * c["wipe_leg_duration_s"] / c["physics_dt_s"])
     # 控制输入使用相同时间戳的物理反馈，不是目标力。
     measured = frame.set_index("time_s").loc[commands.time_s, "normal_force_n"]
     np.testing.assert_allclose(commands.measured_force_n, measured, atol=1e-12)
@@ -96,3 +96,15 @@ def test_compliant_contact_round_trip_is_separate_from_legacy(tmp_path):
     assert metrics["运动采样数"] == 6000
     assert metrics["运动法向力RMSE_N"] < .3  # 新工况的附加检查，不改旧验收。
     assert load_config()["contact_solimp"] == [.9, .95, .001]
+
+
+def test_original_three_second_case_stays_a_recorded_failure(tmp_path):
+    c = load_config(Path("configs/c1_wipe_legacy_3s.json"))
+    assert c["contact_solimp"] == [.9, .95, .001]
+    assert c["force_target_n"] == 5.
+    with pytest.raises(ValueError, match="C1-01 验收未通过"):
+        run(c, tmp_path)
+    metrics = json.loads((tmp_path / "run_001/c1_metrics.json").read_text(encoding="utf-8"))
+    assert not metrics["passed"]
+    assert metrics["运动接触保持率"] < 1.
+    assert metrics["运动采样数"] == 6000

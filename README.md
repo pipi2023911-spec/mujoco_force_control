@@ -24,6 +24,7 @@ Python 3.12，依赖版本见 [requirements.txt](requirements.txt)。默认无�
 - [力控实验方案](docs/force_control.md)：基线、传感器、自适应 PI 和鲁棒性实验。
 - [在线模糊 PI](docs/fuzzy_pi.md)：隶属函数、规则、在线更新、状态衔接与验证。
 - [导纳目标力跟踪](docs/admittance_force.md)：默认兼容、K=0与K>0分项验收。
+- [C1 接触与速度诊断](docs/c1_contact_feasibility.md)：5 N 原接触模型的8秒单程基线、3秒失败反例及Debug材料。
 
 ```powershell
 python -m venv .venv
@@ -68,6 +69,7 @@ python -m venv .venv
 | `experiments/m1_gain_ablation.py` | 固定PI、固定Ki提高10%与模糊PI同条件消融 |
 | `experiments/m3_impedance.py` | 独立力矩循环、偏置补偿验证和阻抗对照 |
 | `experiments/c1_wipe.py` | 切向往返路径与法向 PI、路径/接触评价 |
+| `experiments/c1_contact_feasibility.py` | 局部零关节加速度接触快照、逆/正向回代与速度包络，不接入控制链 |
 | `configs/m0_01.json` | 模型来源、home、关节与基础仿真参数 |
 | `configs/m0_02.json` | 工具、薄板、初始间隙、接触与显示配置 |
 | `configs/m0_03.json` | 接近轨迹、IK、真实力/速度/穿透检查与统计窗口 |
@@ -78,7 +80,8 @@ python -m venv .venv
 | `configs/m2.json` | 导纳基准及参数对照组 |
 | `configs/m2b.json` | 目标力、三组K=0阻尼与非零刚度对照 |
 | `configs/m3.json` | 阻抗刚度/阻尼、力矩限制与实验工况 |
-| `configs/c1_wipe.json` | 往返路径、接触保持与轨迹验收 |
+| `configs/c1_wipe.json` | 原接触模型、5 N、10 mm、8秒单程主验收基线 |
+| `configs/c1_wipe_legacy_3s.json` | 原3秒单程失败反例，保留原阈值和失败输出 |
 | `configs/c1_compliant.json` | 独立柔顺接触工况，不替换原C1环境及失败 |
 | `scripts/run_m0_01.ps1` | Windows 模型基础实验入口 |
 | `scripts/run_m0_01.sh` | Linux 模型基础实验入口 |
@@ -96,6 +99,7 @@ python -m venv .venv
 | `tests/test_gain_design.py` | 拟合单位、斜率与不适用数据检查 |
 | `tests/test_m3.py` | 阻抗数值行为、执行器与物理实验 |
 | `tests/test_c1_wipe.py` | 往返轨迹、接触和端点检查 |
+| `tests/test_contact_feasibility.py` | 真实MuJoCo逆/正向快照、执行器范围及局部速度风险对照 |
 | `tests/test_presentation.py` | 中文副本和窗口隔离测试 |
 | `docs/usage.md` | 完整运行步骤 |
 | `docs/interfaces.md` | 输入、输出、时序与单位 |
@@ -103,6 +107,7 @@ python -m venv .venv
 | `docs/force_control.md` | 实验顺序、评价定义与开发边界 |
 | `docs/fuzzy_pi.md` | 在线模糊 PI 算法、参数、运行和证据要求 |
 | `docs/admittance_force.md` | 导纳目标力接口与分项验收 |
+| `docs/c1_contact_feasibility.md` | C1诊断方法、接口、运行、局部近似限制与失败复现 |
 | `docs/evidence/README.md` | 固定 PI、测量接入与既有 C1 失败的实测记录 |
 | `docs/evidence/pi_sensor_metrics.json` | 统计、源码摘要和原始归档校验值 |
 | `docs/evidence/pi_sensor_raw_2026-10-24.zip` | 选定实验的原始数据、配置、日志和曲线 |
@@ -117,6 +122,10 @@ python -m venv .venv
 | `docs/evidence/compliance-followup-2026-10-25/README.md` | 导纳、C1成败、局部拟合与固定增益消融记录 |
 | `docs/evidence/compliance-followup-2026-10-25/*.csv`、`verification.json`、`c1_diagnostics.json` | 各组指标、诊断参数、归档校验与局部模型核对 |
 | `docs/evidence/compliance-followup-2026-10-25/*.zip`、`*.png` | 导纳/C1/拟合/消融原始数据和曲线，详见目录说明 |
+| `docs/evidence/c1-speed-matched-2026-10-25/README.md` | 8秒主基线与原3秒反例实测、Debug学习步骤 |
+| `docs/evidence/c1-speed-matched-2026-10-25/comparison.csv`、`force_envelope.csv`、`verification.json` | 成败指标、35组接触快照、真实测试和配置差异 |
+| `docs/evidence/c1-speed-matched-2026-10-25/failure_inventory.json`、`manifest.json` | 24次失败调试运行索引、原始成员与压缩包SHA256 |
+| `docs/evidence/c1-speed-matched-2026-10-25/*.zip`、`*.png` | 主基线/反例、失败调试原始数据、诊断脚本/日志、曲线 |
 | `assets/MODEL_SOURCE.json` | 上游仓库、提交和许可证记录 |
 
 上游资源位于 `assets/mujoco_menagerie_panda/`：`panda.xml`、`panda_nohand.xml`、`hand.xml` 分别为机械臂/无手臂/手部模型；`scene.xml` 为基础场景；`mjx_panda.xml`、`mjx_panda_nohand.xml`、`mjx_hand.xml`、`mjx_scene.xml`、`mjx_single_cube.xml` 为上游 MJX 资源，不是本项目 Python 力控入口。`assets/*.obj`、`assets/*.stl` 为显示/碰撞网格；`LICENSE` 保留 Apache-2.0 许可证。
@@ -133,4 +142,8 @@ python -m venv .venv
 
 [在线模糊 PI 闭环验收](docs/evidence/fuzzy-pi-2026-10-25/README.md)包含十二次配对、实际Kp/Ki曲线与不利结果。
 
-[柔顺遗留项实测](docs/evidence/compliance-followup-2026-10-25/README.md)增加M2b、局部有效刚度和固定增益消融。当前完整回归为 **71 PASS、1个原C1 FAIL**。新柔顺接触工况通过不等于原C1修复，该问题仍未关闭，不能宣布柔顺项目全部完成。
+[柔顺遗留项实测](docs/evidence/compliance-followup-2026-10-25/README.md)保存M2b、局部有效刚度和固定增益消融，以及当时71 PASS、1个原C1 FAIL的真实记录。
+
+当前[C1主基线](docs/evidence/c1-speed-matched-2026-10-25/README.md)按用户选择保留5 N与原接触模型，将单程时间从3秒改为8秒：运动段连续接触率100%，真实力RMSE 0.124041 N。完整回归 **74 PASS**，其中包含明确要求原3秒实验失败的负向回归；原3秒工况仍不达标，不能称其已修复。PI增益、限幅、路径长度与验收阈值保持一致。
+
+失败案例作为Debug学习材料保存：配置、真实采样、异常时刻、诊断方法、日志和复现入口共同归档。通过工况不覆盖失败记录；历史阶段结论仍按各自条件解释。

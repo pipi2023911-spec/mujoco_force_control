@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-25",
+  "parent_commit": "69f3336043e27998fb77ffe48dcf5e529b582903",
+  "source_sha256": {
+    "configs/c1_wipe.json": "29b206be8c635fa1a61cbb25cbf6c459ff5931805f5fd632a9d9de7efddc7123",
+    "configs/c1_wipe_legacy_3s.json": "127367eb952edc6381ef9225b4102580fc68bfd678f1324eae24126ee0bd7451",
+    "experiments/c1_wipe.py": "ab96535a4f0f920d69492481a7075c5b9012b22b3423a985e130d92fdff8327f",
+    "experiments/c1_contact_feasibility.py": "e38baea01c52599d3ee90ae1b93adeecfef68bd2df3723b91d06d8cdd6ac350d",
+    "tests/test_c1_wipe.py": "913bd217ffc070e65791f9d64cf2f20ad2e24156b3f1f26b0d757b1522b749ca",
+    "tests/test_contact_feasibility.py": "c1a5ba4405affb0109482851d10b2f948a985cf9b932e288083212f8747be51a"
+  },
+  "config_difference_legacy_to_current": {
+    "duration_s": [
+      17.0,
+      27.0
+    ],
+    "wipe_leg_duration_s": [
+      3.0,
+      8.0
+    ],
+    "experiment_label": [
+      "C1 原3秒单程反例（不作为通过基线）",
+      "C1-01 水平面恒力往返"
+    ]
+  },
+  "same_conditions": [
+    "5N",
+    "原接触模型",
+    "原PI增益/限幅",
+    "10mm往返",
+    "原验收阈值"
+  ],
+  "user_choice": "保留5 N与原接触模型，采用经验证的较低速度",
+  "regression": {
+    "command": "python -m pytest tests -q --basetemp=t_all",
+    "passed": 74,
+    "warnings": 14,
+    "seconds": 100.35,
+    "note": "包含明确断言原3秒实验失败的负向回归，不能解释为原3秒实验通过"
+  },
+  "baseline_cli": {
+    "command": "python -m experiments.c1_wipe",
+    "passed": true
+  },
+  "repeat_contact_trace_exact_equal": true,
+  "repeat_limit": "同初态确定性重复，不是多种子统计鲁棒性证明",
+  "versions": {
+    "mujoco": "3.3.7",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "matplotlib": "3.10.3"
+  },
+  "python": "3.12.14",
+  "diagnostic": {
+    "passed": true,
+    "model_report": {
+      "tool_parent": "hand",
+      "hand_position_world_m": [
+        0.5544994780317354,
+        -2.6377536518327582e-33,
+        0.6245024294875892
+      ],
+      "hand_rotation_world_from_local": [
+        [
+          9.819831711821436e-05,
+          0.9999999951785448,
+          3.1401849173675493e-16
+        ],
+        [
+          0.9999999951785448,
+          -9.819831711821436e-05,
+          -2.465190328815662e-32
+        ],
+        [
+          3.083608743255026e-20,
+          3.1401849022272896e-16,
+          -0.9999999999999996
+        ]
+      ],
+      "tool_center_home_world_m": [
+        0.5544994780317354,
+        -6.582058177937818e-33,
+        0.46450242948758924
+      ],
+      "tool_tip_definition": "sphere center TCP",
+      "tool_radius_m": 0.015,
+      "added_tool_mass_kg": 0.07,
+      "surface_origin_world_m": [
+        0.5544994780317354,
+        -6.582058177937818e-33,
+        0.4295024294875892
+      ],
+      "plate_center_world_m": [
+        0.5544994780317354,
+        -6.582058177937818e-33,
+        0.4195024294875892
+      ],
+      "normal_world": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "approach_direction_world": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "surface_definition": "top face of a fixed finite box, not an infinite plane",
+      "plate_half_size_m": [
+        0.12,
+        0.12,
+        0.01
+      ],
+      "expected_initial_gap_m": 0.02,
+      "tool_geom_id": 83,
+      "plane_geom_id": 84,
+      "tool_site_id": 0
+    },
+    "git_head": "69f3336043e27998fb77ffe48dcf5e529b582903",
+    "runner_sha256": "e38baea01c52599d3ee90ae1b93adeecfef68bd2df3723b91d06d8cdd6ac350d",
+    "局部边界力速度斜率_Ns每m": 1842.3884791001785,
+    "局部5N临界速度_m每s": 0.0027126841975541284,
+    "10mm五次曲线最小单程时间局部估计_s": 6.911973025428392,
+    "限制": "局部零关节加速度快照、有限深度扫描，不是全轨迹可行性或稳定性证明。正逆回代不是实际控制器运行。"
+  },
+  "diagnostic_crosscheck": {
+    "snapshots": 35,
+    "max_force_difference_n": 1.7559287357471476e-12,
+    "max_qacc_norm": 3.0181124908274295e-12,
+    "min_torque_margin_nm": 8.053185881398194
+  },
+  "failed_debug_runs_archived": 24,
+  "notes": [
+    "原失败实验不改写为成功；历史阶段的71/1记录仍有效。",
+    "仅无窗口仿真，未进行真机或图形窗口人工验证。",
+    "完整测试后只对诊断图速度轴排序；最终诊断入口已重新实际运行，算法数值不变。"
+  ]
+}

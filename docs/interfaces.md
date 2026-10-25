@@ -46,3 +46,9 @@
 `contact_force.csv` 的 `normal_force_n` 和 `force_error_n` 始终是真值及目标减真值；`control.csv` 的 `force_error_n` 为目标减测量值。启用扰动后两者不同，不应混用。`joint_state.csv` 保留物理位置/速度，`raw_contacts.csv` 保留坐标变换重构所需的接触局部力和坐标系。
 
 每组子实验保存 `config.json`、`summary.json`、版本与源码/资源 SHA256、`run.log`。异常会保留已有样本和失败时刻，不补造完整轨迹。停止仿真表示结束数值积分，不是经过验证的真机安全停止。
+
+## C1路径与离线接触诊断
+
+`wipe_displacement(t, config)`输出X方向位移（m）和速度（m/s），采用五次曲线；`wipe_start_s`为起点，`wipe_leg_duration_s`为单程时间，`wipe_length_m`为单程长度。主配置为10秒开始、8秒单程、10 mm，26秒回到起点，27秒结束。`c1_wipe.run`输出`c1_metrics.json`与最终`summary.json`；基础循环检查通过后仍须通过连续接触与实际往返判定。原3秒配置失败时抛出`ValueError`，已有数据保留。
+
+`c1_contact_feasibility.run(output_root=None)`返回新建结果目录，默认`results/V/run_XXX/`。`local_state`按局部TCP位姿、切向速度与零关节加速度构造诊断状态；逆动力学结果通过原七轴位置执行器回代，手指残差单独补齐，不向机械臂额外施加广义力。`force_envelope.csv`记录速度、几何压入量、正逆法向力差、正向加速度、力矩余量及位置命令范围；`summary.json`的`passed`仅代表这组诊断回代检查通过。离线诊断不修改主控制器或场景配置，也不代表闭环稳定，详见[C1诊断定义](c1_contact_feasibility.md)。

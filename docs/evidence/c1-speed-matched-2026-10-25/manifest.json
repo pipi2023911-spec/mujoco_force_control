@@ -1,0 +1,1601 @@
+{
+  "archives": {
+    "baseline_raw_01.zip": {
+      "sha256": "0778da8becd9c5108a926f7f6d54a6c0a55529baf20e155a1457fe60771089b3",
+      "bytes": 15926925,
+      "entries": 30
+    },
+    "debug_raw_01.zip": {
+      "sha256": "988f026ba0dc99a49a7dfb475b0b2088e844ec0ba9efad55d259c4288170abd4",
+      "bytes": 21769138,
+      "entries": 40
+    },
+    "debug_raw_02.zip": {
+      "sha256": "9c2200ebc7bc4ff64d4892335bd796d0e079c275d516b531432085405e887910",
+      "bytes": 24020788,
+      "entries": 45
+    },
+    "debug_raw_03.zip": {
+      "sha256": "cbb255fd612dbef2c81dd42deb339c748f3752ff6fe642d56b498a7d948a3f36",
+      "bytes": 23849588,
+      "entries": 48
+    },
+    "debug_raw_04.zip": {
+      "sha256": "0258bdd6ba6189aa6e52d20cb2fe02692ea2435a0f3154794c732833d8f1183a",
+      "bytes": 23934854,
+      "entries": 48
+    },
+    "debug_raw_05.zip": {
+      "sha256": "8acad2b069146f8bd2e8059310e1c483164ae9b4266c06bbf9be9ee0d9d8468e",
+      "bytes": 23795984,
+      "entries": 55
+    },
+    "debug_raw_06.zip": {
+      "sha256": "48bbfca2d3be85932388f95a860aaf83d13bf9bfe77e78bf3b69a8ef78128e6f",
+      "bytes": 23596076,
+      "entries": 45
+    },
+    "debug_methods_and_logs.zip": {
+      "sha256": "a780b79ddc464fc8d258a75b89d3f48ee87dc71a4016f1ac3b308273f1385ac0",
+      "bytes": 68705,
+      "entries": 40
+    }
+  },
+  "raw_members": {
+    "results/C1_Wipe/run_002/c1_curves.png": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "ef6add5d090cf5c27146403c4c98a7642b2a4292eeaec0ad989fddf801f12766",
+      "bytes": 182845
+    },
+    "results/C1_Wipe/run_002/c1_metrics.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "4e37b4de950f71578f65f42e6754fe868530cfc20158b95fdd99aef651cba979",
+      "bytes": 836
+    },
+    "results/C1_Wipe/run_002/config.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "988fc897274814010958959f1cc4e8e55dacb7e92fd409326b9b7b50526cbf61",
+      "bytes": 2989
+    },
+    "results/C1_Wipe/run_002/contact_force.csv": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "a59312e373bad68498002a3a66baff594808b69a4994060accafc2cd6b2f2bbc",
+      "bytes": 12032275
+    },
+    "results/C1_Wipe/run_002/contact_scene.xml": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "61ca4338a7249fe53b3035ff4079741e1f67d82a64d1fff62af61061488ba23b",
+      "bytes": 16268
+    },
+    "results/C1_Wipe/run_002/control.csv": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "19823296a60af90ec99a16d4f3b6057549941e74201b92569df196942df71502",
+      "bytes": 3063802
+    },
+    "results/C1_Wipe/run_002/joint_state.csv": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "8b6ffb5a8d741b4be89b5f62f717455a02490bb46dc1f55a9b35d6973ae28eab",
+      "bytes": 11145739
+    },
+    "results/C1_Wipe/run_002/model_report.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/C1_Wipe/run_002/raw_contacts.csv": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "257cffe6afe1ed1752b4be0ee58dae10e6509563bf26534f83f82164225043c2",
+      "bytes": 6104745
+    },
+    "results/C1_Wipe/run_002/run.log": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "723d70e5eb0cc97519e101f7706fad60b7364d010f820988e6b01520b0193d5e",
+      "bytes": 511431
+    },
+    "results/C1_Wipe/run_002/scene_report.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/C1_Wipe/run_002/summary.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "24347a45029623fe02b98f1a69221712f344c77800bfa8a473d0ce3bd90d2fd1",
+      "bytes": 15337
+    },
+    "t_all/test_original_three_second_cas0/run_001/c1_curves.png": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "d73a26b87a7fd06967f5ce939fa333f4fbf0f20280b984674635ebbb4454b0ba",
+      "bytes": 205647
+    },
+    "t_all/test_original_three_second_cas0/run_001/c1_metrics.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "26f00bbb32e5e35f83c23c0769f761b5e22fd49c252aba1927011790dd8fade2",
+      "bytes": 849
+    },
+    "t_all/test_original_three_second_cas0/run_001/config.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "8af2271f36301b103f9bd20020a350185d4ae679efc33ace3ce734ea03f13d99",
+      "bytes": 3011
+    },
+    "t_all/test_original_three_second_cas0/run_001/contact_force.csv": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "c26dc632a401b3d3339a4aef13129482989c99062a6f634be7d48a87684e4ad3",
+      "bytes": 7328980
+    },
+    "t_all/test_original_three_second_cas0/run_001/contact_scene.xml": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "61ca4338a7249fe53b3035ff4079741e1f67d82a64d1fff62af61061488ba23b",
+      "bytes": 16268
+    },
+    "t_all/test_original_three_second_cas0/run_001/control.csv": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "5a7e7565bc18ae2eb80877ad385e957246a9cbd5dc42e976099717ac9ca5878e",
+      "bytes": 1830050
+    },
+    "t_all/test_original_three_second_cas0/run_001/joint_state.csv": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "11594e75a9fb204415f9b7f6929e813353ba210740acfa170963a9a6ff908bad",
+      "bytes": 7016884
+    },
+    "t_all/test_original_three_second_cas0/run_001/model_report.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "t_all/test_original_three_second_cas0/run_001/raw_contacts.csv": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "51bd12733563d3bab5075446653bf488a32e1fc258cf0765ac96fec124d72dd0",
+      "bytes": 3051607
+    },
+    "t_all/test_original_three_second_cas0/run_001/run.log": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "3d4f5f03a842413f3f2a8ec5311e38f869ad727863010f1d9f68d67a21f54548",
+      "bytes": 321372
+    },
+    "t_all/test_original_three_second_cas0/run_001/scene_report.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "t_all/test_original_three_second_cas0/run_001/summary.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "a61c885883b76e1a3bc0ab801e29a51873003d02494cc3ecaeff404a32ba7649",
+      "bytes": 15440
+    },
+    "results/V/run_002/config.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "988fc897274814010958959f1cc4e8e55dacb7e92fd409326b9b7b50526cbf61",
+      "bytes": 2989
+    },
+    "results/V/run_002/contact_scene.xml": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "61ca4338a7249fe53b3035ff4079741e1f67d82a64d1fff62af61061488ba23b",
+      "bytes": 16268
+    },
+    "results/V/run_002/force_envelope.csv": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "4d9bcd2b623c875a013a31992f7843b1a6f45f2bb71352e18ffed6dcbb818952",
+      "bytes": 4500
+    },
+    "results/V/run_002/force_envelope_中文.csv": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "3b4072575d83e536ea95141863bed1281c829e2f731bfc79df715f9f2d248e58",
+      "bytes": 4468
+    },
+    "results/V/run_002/force_speed_envelope.png": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "4a174ca0e067a6bf9adc6134b00dd5fcb4ed52b2b20d24706e3e71ee7ebf265f",
+      "bytes": 66329
+    },
+    "results/V/run_002/summary.json": {
+      "archive": "baseline_raw_01.zip",
+      "sha256": "72befcb44724facda1e7ef7b6436ab9b7800ead3e63ead51b9afc0c55728798d",
+      "bytes": 1987
+    },
+    "results/Cchain/dt_half/run_001/c1_curves.png": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "6f0c36d0715841ce9db79e18b3b46ead4af30d467670407b71a63a60266f1379",
+      "bytes": 203112
+    },
+    "results/Cchain/dt_half/run_001/c1_metrics.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "404f7d8307a5184483402dff30595e5dbf050c8c993d9720497ed336169fe3a3",
+      "bytes": 838
+    },
+    "results/Cchain/dt_half/run_001/config.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "da88d994682f0cb9ef1195741fac95d635666a21a35b9975d573220188eb476c",
+      "bytes": 2990
+    },
+    "results/Cchain/dt_half/run_001/contact_force.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "0d2148ce23339b5a2883e1728c02f69ecce7d866982a0570b138f260a9613917",
+      "bytes": 14655285
+    },
+    "results/Cchain/dt_half/run_001/contact_scene.xml": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "d509892f1fe3d039d189141ff645aa9487d1604e9858a6767fdbff72ee7f01e9",
+      "bytes": 16272
+    },
+    "results/Cchain/dt_half/run_001/control.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "39cb5c1852b42a2aa5f548048563e1a2f8defa3d4f8e0351c927e3981fe97010",
+      "bytes": 1829355
+    },
+    "results/Cchain/dt_half/run_001/joint_state.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "ad752128aee81142d45d1abc178f585e627efad949c1cf1b14a92ba0f7f67ce6",
+      "bytes": 14026724
+    },
+    "results/Cchain/dt_half/run_001/model_report.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cchain/dt_half/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "68d4c3b62e27cb515c6196ad643ba1a3af9fb4ffc3a4e8d6896140c7796545db",
+      "bytes": 6097307
+    },
+    "results/Cchain/dt_half/run_001/run.log": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "2bb53ccedfc01d8e1f17a12948361258ad1393bf46923479ca4217a11e4e87d8",
+      "bytes": 321379
+    },
+    "results/Cchain/dt_half/run_001/scene_report.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cchain/dt_half/run_001/summary.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "e1f8a70c8c6adfb497dc0284c7435318525787220502deb4cfc8ab57c354af76",
+      "bytes": 15051
+    },
+    "results/Cchain/no_friction_diagnostic_only/run_001/config.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "9399d600fa52f44b7bf8c92602ede4c89b65bb1e87aaef261a1068b051faa04a",
+      "bytes": 2989
+    },
+    "results/Cchain/no_friction_diagnostic_only/run_001/contact_force.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "94e9e95b945de75dc2b8edef42dd82fc5780146db56082d5f593e4a2d3c08bda",
+      "bytes": 3191158
+    },
+    "results/Cchain/no_friction_diagnostic_only/run_001/contact_scene.xml": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "07febc6a3a41697c9779a3eed7b63d011e7967173709569c75a29750f3b45fbb",
+      "bytes": 16217
+    },
+    "results/Cchain/no_friction_diagnostic_only/run_001/control.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "d7e2a324cffbf58a8e30c4f51897a5df5e5f5f801c547321fad6acd2ec0f8e86",
+      "bytes": 733310
+    },
+    "results/Cchain/no_friction_diagnostic_only/run_001/joint_state.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "ca5a8784af1a9ea5b0b38056647e7eb4a696be02284e88462135ff44384b8840",
+      "bytes": 3306174
+    },
+    "results/Cchain/no_friction_diagnostic_only/run_001/model_report.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cchain/no_friction_diagnostic_only/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "0c2bf00c437882fa4ce6e613850bd7ff0648bbdd8adbd5412aebed0a0cdd74c6",
+      "bytes": 544782
+    },
+    "results/Cchain/no_friction_diagnostic_only/run_001/run.log": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "ef2a81c1941165625812f86ccc45c9dc5a66ecd386e67da33cf406630e9bc4af",
+      "bytes": 150593
+    },
+    "results/Cchain/no_friction_diagnostic_only/run_001/scene_report.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cchain/no_friction_diagnostic_only/run_001/summary.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "0bcd021d8914fdb533a6591265f94c07e96d58ba2dc1b50669e503a289a985e9",
+      "bytes": 13453
+    },
+    "results/Cchain/rate2/run_001/c1_curves.png": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "462224e095fc27280b83a46232148d3832fa6f0ef284f9e728f29bd2d8625aa3",
+      "bytes": 201374
+    },
+    "results/Cchain/rate2/run_001/c1_metrics.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "0cc368c08098170530b56b6ddbc65e30c5907f5b312b0786cbb138db330c72a2",
+      "bytes": 848
+    },
+    "results/Cchain/rate2/run_001/config.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "493e73ba6fb3a62cf7114e408a52a8a2104480866fd2bb95c56f727dd255495f",
+      "bytes": 2988
+    },
+    "results/Cchain/rate2/run_001/contact_force.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "655812431c6529ed0390bd06793cc6893b24c283b6c5a2e97b979f03a0fbb9ba",
+      "bytes": 7326456
+    },
+    "results/Cchain/rate2/run_001/contact_scene.xml": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cchain/rate2/run_001/control.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "17211bc7cf9f3080139953c4263858a9d8ed5403f30758616ea118a8ab2a5eb5",
+      "bytes": 1831111
+    },
+    "results/Cchain/rate2/run_001/joint_state.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "d3a982e640f72c8a65a08e315a80cd9133a76d5b015f102f6ba7e6295a697ae8",
+      "bytes": 7016237
+    },
+    "results/Cchain/rate2/run_001/model_report.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cchain/rate2/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "9888adc464e1dcde469f6c21bdb9fdb1345ec1d0a395905f1463cc38bcc70d6f",
+      "bytes": 3043240
+    },
+    "results/Cchain/rate2/run_001/run.log": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "935401157d17f98a99960f365cb577330c95b80580afbd9f13f0127ed57167fa",
+      "bytes": 321374
+    },
+    "results/Cchain/rate2/run_001/scene_report.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cchain/rate2/run_001/summary.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "4e44fd0181b65512df746db5699af586a1bbc7e39bf80c4c615bbaa657089038",
+      "bytes": 15059
+    },
+    "results/Cchain/rate4/run_001/c1_curves.png": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "6719eb045fc3ae9e7c6869eb6cb155b5dcd636422769371cfa976b41d19f4e21",
+      "bytes": 201014
+    },
+    "results/Cchain/rate4/run_001/c1_metrics.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "70fb62bdd34cc0b03db4143b2240a485b7140a51346cf8ef21e6e421aebebd85",
+      "bytes": 848
+    },
+    "results/Cchain/rate4/run_001/config.json": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "c6b4349e3940f192f68731f29882b18cd1b3054c8b53de6088d689c7a3d87300",
+      "bytes": 2988
+    },
+    "results/Cchain/rate4/run_001/contact_force.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "7574f878c92cf38559b9e1ac5f6d4f413f882f141bf62409e1b9e68c9386f464",
+      "bytes": 7326103
+    },
+    "results/Cchain/rate4/run_001/contact_scene.xml": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cchain/rate4/run_001/control.csv": {
+      "archive": "debug_raw_01.zip",
+      "sha256": "597a3b38b62965aafe1aa03c3873fa1582c9a76bdfa7109f79c0774adeee7f9e",
+      "bytes": 1830735
+    },
+    "results/Cchain/rate4/run_001/joint_state.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "c25d1f0504c998058eef53152dbd4a3eda8f76f6d4d94e91c1ffc9f0dae34ef5",
+      "bytes": 7016543
+    },
+    "results/Cchain/rate4/run_001/model_report.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cchain/rate4/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "53e9f89c700a145400273a0ff456abfed5ea1ed49c5553db8c5832a3e6ce08e2",
+      "bytes": 3040255
+    },
+    "results/Cchain/rate4/run_001/run.log": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "32327717ec195159060b654fe515380c68e9369611f7a56ca9eba0decc842271",
+      "bytes": 321366
+    },
+    "results/Cchain/rate4/run_001/scene_report.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cchain/rate4/run_001/summary.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "ac0102cb5b521d077ec47ff890e24cea658c90578363a18a11f321542ecf0630",
+      "bytes": 15061
+    },
+    "results/Cconditions/friction04/run_001/c1_curves.png": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "5d4fc5af11471e919298dcdc319811bbefc033e81f4955faf60270f7a8195945",
+      "bytes": 196844
+    },
+    "results/Cconditions/friction04/run_001/c1_metrics.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "860a93a2c048d5355eb98a45971744d890a23c15be8333e96173d556adaeedb6",
+      "bytes": 847
+    },
+    "results/Cconditions/friction04/run_001/config.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "51cab68ec7dd13a2c6a028714d954b647b88fc1e4437e76c7df1471bb48171c1",
+      "bytes": 2989
+    },
+    "results/Cconditions/friction04/run_001/contact_force.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "4f54495a21a0210d00e9c72445f781b87f2a7cdca6df139fd5119c6b2575967a",
+      "bytes": 7282036
+    },
+    "results/Cconditions/friction04/run_001/contact_scene.xml": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "dad998af03cbdb44ec8d60e2edbf90945c61473561dfbff0e4606c350f286816",
+      "bytes": 16271
+    },
+    "results/Cconditions/friction04/run_001/control.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "57e17736ce091c584deb4f20b6ae5d04af5092e3a18ef54ddfc8283d408e2d89",
+      "bytes": 1825993
+    },
+    "results/Cconditions/friction04/run_001/joint_state.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "674535e49a7e5f3bdfa5053d44c267a1acf6216ee2f02471d765492c9110d33b",
+      "bytes": 7019466
+    },
+    "results/Cconditions/friction04/run_001/model_report.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cconditions/friction04/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "678593dcd6d3750a58795f2e3d0624f0a5287b64e7422e3368c45b52579a4725",
+      "bytes": 2946509
+    },
+    "results/Cconditions/friction04/run_001/run.log": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "610be19568d6962af8e5b75179fd047f7c7cebf3686db0ed961024cb5eea0a6b",
+      "bytes": 321346
+    },
+    "results/Cconditions/friction04/run_001/scene_report.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cconditions/friction04/run_001/summary.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "6140fffc18fcf78e0d5e60cbdd3df22cbad2a98afb97bafac6494b4d30ebcefa",
+      "bytes": 15103
+    },
+    "results/Cconditions/slower6s/run_001/c1_curves.png": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "bf8f613e3494db54f9511369c37ebf9d1ebb705bb5495a98e4fefddd04ccc2df",
+      "bytes": 190448
+    },
+    "results/Cconditions/slower6s/run_001/c1_metrics.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "5ec9b027ffb38573a75416a3571abac1606aea9acc53df3517fd5383ccd0b4a0",
+      "bytes": 851
+    },
+    "results/Cconditions/slower6s/run_001/config.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "44eaea391147c3b2531b4d3534e1466d3d77c9c6a59d3d45c6a1d23ded97bfda",
+      "bytes": 2989
+    },
+    "results/Cconditions/slower6s/run_001/contact_force.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "37dbee6ad21a96b3f3e22ceb67d42840ee528ddac9cc00503dad69935bb2598e",
+      "bytes": 10146296
+    },
+    "results/Cconditions/slower6s/run_001/contact_scene.xml": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cconditions/slower6s/run_001/control.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "153ff5cc8849d824162217dc9f92961d66beac7b40862eca6b428b52b6f447a4",
+      "bytes": 2568659
+    },
+    "results/Cconditions/slower6s/run_001/joint_state.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "a0f32ae5d378ccd7d77aa2a79760c4571978582058c1ec7d3883641a27a6234e",
+      "bytes": 9491954
+    },
+    "results/Cconditions/slower6s/run_001/model_report.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cconditions/slower6s/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "2cd8fbdd1ed0a423f845213ef2ab58320ed084e9d0ab4d75c2d9eb33b1e13f86",
+      "bytes": 4885351
+    },
+    "results/Cconditions/slower6s/run_001/run.log": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "df776cafe1463ce7c08fda66cf0338a0d2f66fe39d25d6dad49acb419376075d",
+      "bytes": 435424
+    },
+    "results/Cconditions/slower6s/run_001/scene_report.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cconditions/slower6s/run_001/summary.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "a542ce79596b2b04da1478306190ea9bf88a61e11270351840e9daa772257cdd",
+      "bytes": 15111
+    },
+    "results/Cconditions/solref04/run_001/c1_curves.png": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "b9c489e4914fac373eba7775c282979136327ad080c246a54c7df05a07006180",
+      "bytes": 196442
+    },
+    "results/Cconditions/solref04/run_001/c1_metrics.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "8bbed76fc2a0ce7a39636548033ae89ee27ef6b04af87d6cb262cccc3896e506",
+      "bytes": 849
+    },
+    "results/Cconditions/solref04/run_001/config.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "5bee812f633289ced555cd742b2673dbd834df4c892e4f6eb2271cf1767f8b89",
+      "bytes": 2989
+    },
+    "results/Cconditions/solref04/run_001/contact_force.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "90fc3bc1dc4f90124f665e1545770f9416feb6f05ac831490cbc4a254627b659",
+      "bytes": 7374627
+    },
+    "results/Cconditions/solref04/run_001/contact_scene.xml": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "7e71fdaa81f95177b940e01ca9b108cc56419f00f8eb02c32dc90f17a4637dcf",
+      "bytes": 16319
+    },
+    "results/Cconditions/solref04/run_001/control.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "1ad3a56390dbee355031a7923e64098387a3db82b3697c2db38b346db12deebc",
+      "bytes": 1835342
+    },
+    "results/Cconditions/solref04/run_001/joint_state.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "f9f309c3f1093f5aca3535975adf6fd5d0055fa3426614515a03a483ade0c265",
+      "bytes": 7017831
+    },
+    "results/Cconditions/solref04/run_001/model_report.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cconditions/solref04/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "70bf34850a1a68ed77c29af236b231d6a2990d69478c309d1fffb1aef6981b59",
+      "bytes": 3183102
+    },
+    "results/Cconditions/solref04/run_001/run.log": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "d3eb9626427d102aa9440234fc4ee2139a2fa98f87943798c0c52e90a4e14391",
+      "bytes": 321430
+    },
+    "results/Cconditions/solref04/run_001/scene_report.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cconditions/solref04/run_001/summary.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "f0799167bfb2abb1cf41a085bc53f73c56c185a4218f6b49fb99637165a7a50a",
+      "bytes": 15105
+    },
+    "results/Ccontact/elliptic/run_001/c1_curves.png": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "d8fab418709bcbd8aada53a35d2204c752b538d11809af9d8c04632f649f6004",
+      "bytes": 205892
+    },
+    "results/Ccontact/elliptic/run_001/c1_metrics.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "7229c4e181404768fd3af2edcb2cea2c3f1efe0062880ce4f044a2e63a9c32f1",
+      "bytes": 848
+    },
+    "results/Ccontact/elliptic/run_001/config.json": {
+      "archive": "debug_raw_02.zip",
+      "sha256": "b6930017f07a277e83a1b3e8bd2b1b4e54eec0e6c866370cb948adb75b9b947a",
+      "bytes": 2989
+    },
+    "results/Ccontact/elliptic/run_001/contact_force.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "9300ca321626c192297ae13ee4dd9bb11e82e47904a2c03f0637bc362db8f17b",
+      "bytes": 7348287
+    },
+    "results/Ccontact/elliptic/run_001/contact_scene.xml": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "5d790977e20b7c7df9681ebdf5fa2a574a2790cfd21864e10fa2d40879c1ac29",
+      "bytes": 16138
+    },
+    "results/Ccontact/elliptic/run_001/control.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "be3bfea3cb8c788a6861f3d6a61f8c6ad469c2b0313a756b882e0e1b629126e5",
+      "bytes": 1827544
+    },
+    "results/Ccontact/elliptic/run_001/joint_state.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "020f9299aec28dea560ef6734941ed54c0c4566492c73c7bb98160f300eb6bab",
+      "bytes": 7017500
+    },
+    "results/Ccontact/elliptic/run_001/model_report.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Ccontact/elliptic/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "7b9746ecbb66ebbba340913934149afd2a682136c8b65edd81bdb528707165ac",
+      "bytes": 3091029
+    },
+    "results/Ccontact/elliptic/run_001/run.log": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "8cc6d0d4f10b56ff60b1010ed4cc227be5eac734e9715dd6a333c852f7dc8271",
+      "bytes": 321357
+    },
+    "results/Ccontact/elliptic/run_001/scene_report.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Ccontact/elliptic/run_001/summary.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "0851a017c13fa9e275134bd209e2064a930f3fcc645fabf944a8ab82b08aa6d4",
+      "bytes": 15104
+    },
+    "results/Ccontact/implicit/run_001/c1_curves.png": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "2c50d85999f45012cfd22bd204ae585051d791f298c02c95882cfdda678a6bd1",
+      "bytes": 205653
+    },
+    "results/Ccontact/implicit/run_001/c1_metrics.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "d7179948970ea6655469126b4d685c9310e6cd46e40fc9735b39bc7fdd5e1676",
+      "bytes": 849
+    },
+    "results/Ccontact/implicit/run_001/config.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "b6930017f07a277e83a1b3e8bd2b1b4e54eec0e6c866370cb948adb75b9b947a",
+      "bytes": 2989
+    },
+    "results/Ccontact/implicit/run_001/contact_force.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "3c8a2933e7ced271c83cb4c2e50cf294142c3b5a62281b59106674a89633a992",
+      "bytes": 7328750
+    },
+    "results/Ccontact/implicit/run_001/contact_scene.xml": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "2572d65c10e2777e4717ebaf360b73767c593278fb9b98a845eb7afd30b6eb94",
+      "bytes": 16118
+    },
+    "results/Ccontact/implicit/run_001/control.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "5c6d99a48b96c7f67c9aba3965c75aa7eb0181635287fdab22756571632eefb4",
+      "bytes": 1830476
+    },
+    "results/Ccontact/implicit/run_001/joint_state.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "be857f50c10860bbb29fefabdac6bc4b0ff08a22927ef572cdcf749c817556e8",
+      "bytes": 7017282
+    },
+    "results/Ccontact/implicit/run_001/model_report.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "b9dd43a0d00aac77028b3e2006281118a064894ded67e6670f7619e91f56349a",
+      "bytes": 9625
+    },
+    "results/Ccontact/implicit/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "0121958d4c93617e4281a23e025c0e28e0d792baf5a70e01c0f0aafd9ab08bcf",
+      "bytes": 3051910
+    },
+    "results/Ccontact/implicit/run_001/run.log": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "ff6a4a50fc59608be0173607c2a60d9d43ea916d193844432c255c285af8df2d",
+      "bytes": 321372
+    },
+    "results/Ccontact/implicit/run_001/scene_report.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Ccontact/implicit/run_001/summary.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "8b82da560832649f5b58d2fe10ddb48d0e7200c1106d2d46caf911b139f78034",
+      "bytes": 15104
+    },
+    "results/Ccontact/integral_dominant/run_001/c1_curves.png": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "e7eac452e25770c6b4c877acdc8997a0edfacc730538fb2f18ec865c337ef36b",
+      "bytes": 194256
+    },
+    "results/Ccontact/integral_dominant/run_001/c1_metrics.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "19b5dc110218ca9b9e14b890f10fdbb2560c3538161cff26b5714adfc5566225",
+      "bytes": 848
+    },
+    "results/Ccontact/integral_dominant/run_001/config.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "e34858de6adc1f1b22778dae88bdf98308ded0b420d2eff51afe5cd363ca6394",
+      "bytes": 3003
+    },
+    "results/Ccontact/integral_dominant/run_001/contact_force.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "f9ea67bc11bde8e970c74bcb8f561c6922b78aaa9b4cf7eb12bb1d1adbcccd80",
+      "bytes": 7329969
+    },
+    "results/Ccontact/integral_dominant/run_001/contact_scene.xml": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Ccontact/integral_dominant/run_001/control.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "33d76352863782b2d8039cbf8dc8c2f99b34fc86a52490d4506c25b579c1fba0",
+      "bytes": 1881609
+    },
+    "results/Ccontact/integral_dominant/run_001/joint_state.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "bf86fba48b423d1c80bab6065a0d6cde8a8b1c97d484bd4d56b664e78e2fdef0",
+      "bytes": 7018892
+    },
+    "results/Ccontact/integral_dominant/run_001/model_report.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Ccontact/integral_dominant/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "f15c1b20ecb2d3af86b920a9d8f411fc79f2593a2b590be09b532d27db65d601",
+      "bytes": 3038146
+    },
+    "results/Ccontact/integral_dominant/run_001/run.log": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "671695cd84d0b84304798cf8df7778bb91c1868e62fc26caefc788b24f282659",
+      "bytes": 321364
+    },
+    "results/Ccontact/integral_dominant/run_001/scene_report.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Ccontact/integral_dominant/run_001/summary.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "ec8518a01f3417b429395b0bee4c28cf1ba6e83f155c3c9ac43fe3ee77ea3af2",
+      "bytes": 15104
+    },
+    "results/Cdamp/d05/run_001/c1_curves.png": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "6487bc8219ad3d9365a77e624146989dfce75b2e98d0afa8963a4bb3d32d00a4",
+      "bytes": 205031
+    },
+    "results/Cdamp/d05/run_001/c1_metrics.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "3b1d621ebc82731565ca26c7bf556307a42cf87dc4355affef8358df3153e716",
+      "bytes": 847
+    },
+    "results/Cdamp/d05/run_001/config.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "b6930017f07a277e83a1b3e8bd2b1b4e54eec0e6c866370cb948adb75b9b947a",
+      "bytes": 2989
+    },
+    "results/Cdamp/d05/run_001/contact_force.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "7dda6e69e82d50066e1669b7829691143ad26a73468b60a3107cf1e5130f313f",
+      "bytes": 7330425
+    },
+    "results/Cdamp/d05/run_001/contact_scene.xml": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cdamp/d05/run_001/control.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "8dbc451a5ef7cd2379efa855e944ee2989346ae8d698faee8945a3a7ca73ffba",
+      "bytes": 1872061
+    },
+    "results/Cdamp/d05/run_001/joint_state.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "376286ad0ec3ecf1bbe31331bc2cf139e9cea9c2fcd3b89d982c25ea9f1f8a9c",
+      "bytes": 7017433
+    },
+    "results/Cdamp/d05/run_001/model_report.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cdamp/d05/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "10a4c32baabf5bf139f8aac39513dae65df065de99c4920a9feb90a301d706e0",
+      "bytes": 3054642
+    },
+    "results/Cdamp/d05/run_001/run.log": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "892684200fd7e5892526341e987ae6c7e8fca4f236b7bd71d247a2ec0e433ac0",
+      "bytes": 321372
+    },
+    "results/Cdamp/d05/run_001/scene_report.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cdamp/d05/run_001/summary.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "770f4c8cbc070420025fca6d0f4001d6ba7bf12c5a9413b39a6959b657b144f9",
+      "bytes": 15105
+    },
+    "results/Cdamp/d20/run_001/c1_curves.png": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "b5be79ac09f3d4b34308248180c5b7a82bb65b720f0e7e547ef58b21d09b2c5c",
+      "bytes": 203903
+    },
+    "results/Cdamp/d20/run_001/c1_metrics.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "54071e3bc866b752cfee3fab50faf58d80f5b621d516f29b20bcd357fdfd64bd",
+      "bytes": 850
+    },
+    "results/Cdamp/d20/run_001/config.json": {
+      "archive": "debug_raw_03.zip",
+      "sha256": "b6930017f07a277e83a1b3e8bd2b1b4e54eec0e6c866370cb948adb75b9b947a",
+      "bytes": 2989
+    },
+    "results/Cdamp/d20/run_001/contact_force.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "861f3cd705a3f720bbadc008c60ae4333d3b9d7660a402c85403c943dbedeaa0",
+      "bytes": 7330994
+    },
+    "results/Cdamp/d20/run_001/contact_scene.xml": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cdamp/d20/run_001/control.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "f9699475f55780662a2e7369c1af0bb2ef4762838d1f65becb8fb70ddeb4e52c",
+      "bytes": 1871473
+    },
+    "results/Cdamp/d20/run_001/joint_state.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "4f159a27691b4785e03754c04f86ce8ab44c5993761dce6a9103820e9f527924",
+      "bytes": 7016910
+    },
+    "results/Cdamp/d20/run_001/model_report.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cdamp/d20/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "950243728635a397a691b6f7ccafd766417892b747f3a06390a3b768f4a59436",
+      "bytes": 3057360
+    },
+    "results/Cdamp/d20/run_001/run.log": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "cc7301ea5150bab02d3fe8226e725343504d1fcc79f33dee07f7b0dafef71b0c",
+      "bytes": 321377
+    },
+    "results/Cdamp/d20/run_001/scene_report.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cdamp/d20/run_001/summary.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "08648a94ac7549206225af17bf394a058db93b34c8ac13b2d51e10608c4f3ab3",
+      "bytes": 15108
+    },
+    "results/Cdiag/fuzzy/run_001/c1_curves.png": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "9e69aec8dd170c35762ac8158c27a0f7698e1db631141d25b3ab4ff9e9a35a98",
+      "bytes": 203847
+    },
+    "results/Cdiag/fuzzy/run_001/c1_metrics.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "cbfadd69b3252abf3be5dc14dd8b0a0368afbca3c3ca5d387bbe1cdd7894b7bc",
+      "bytes": 848
+    },
+    "results/Cdiag/fuzzy/run_001/config.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "0c6c6fafd41c63f63cc73a772e2bd82aa03bd3603e3333376e47bba3f120b86d",
+      "bytes": 3017
+    },
+    "results/Cdiag/fuzzy/run_001/contact_force.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "516a662c11e60adbdd5ca165b5e170979540a9a4b8658a3ffa6974b82c959218",
+      "bytes": 7359404
+    },
+    "results/Cdiag/fuzzy/run_001/contact_scene.xml": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cdiag/fuzzy/run_001/control.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "168e5bc116c9c506004d82e0a18ede16c80e29f4c4d776c0e48065fdf2e80c81",
+      "bytes": 2092451
+    },
+    "results/Cdiag/fuzzy/run_001/joint_state.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "cb0d096aea422c205db8b942a8ed21a4aee286f3f5e38ccd88ab43e896102faa",
+      "bytes": 7017330
+    },
+    "results/Cdiag/fuzzy/run_001/model_report.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cdiag/fuzzy/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "8f18300103373965e96bd3702f4dafd6519af42b900fedebc92d26fd29831557",
+      "bytes": 3050706
+    },
+    "results/Cdiag/fuzzy/run_001/run.log": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "86dc9f92f4276dea61c61622df1c4d1db8c231b974f8fc9bcf7406551fbd2b96",
+      "bytes": 327392
+    },
+    "results/Cdiag/fuzzy/run_001/scene_report.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cdiag/fuzzy/run_001/summary.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "a641e0937dab0166d10dc763e30af2657ebbaa6cb34e49f4c7b707a71d01e81d",
+      "bytes": 14794
+    },
+    "results/Cdiag/kp_half/run_001/c1_curves.png": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "bc7a8be86316ecb1002ea4fd7c21da2c2dd2efbc79f60ddca2b3cd5475b212e7",
+      "bytes": 201853
+    },
+    "results/Cdiag/kp_half/run_001/c1_metrics.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "d4e6ba30886dbf874a494e8b9b646eda0411454f65352166a9b283c04ddf2a74",
+      "bytes": 845
+    },
+    "results/Cdiag/kp_half/run_001/config.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "cb93616605a0da9713cf7ec3ed783d6a2c8d879cb870de86312bde84119f5bc7",
+      "bytes": 2989
+    },
+    "results/Cdiag/kp_half/run_001/contact_force.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "d23c28b6f48d69714f772a642032c3bacb59a09fb04360e323217eefa033c39a",
+      "bytes": 7329917
+    },
+    "results/Cdiag/kp_half/run_001/contact_scene.xml": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cdiag/kp_half/run_001/control.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "8d99f0891e9460a29395cfd4d3bc64e970ba3b9bd10d0fb1be1690b83e4c561e",
+      "bytes": 1828633
+    },
+    "results/Cdiag/kp_half/run_001/joint_state.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "69fbf214f5b019b33edfc073cd43e5dbd429153513d25593d78a74e76e36890f",
+      "bytes": 7016701
+    },
+    "results/Cdiag/kp_half/run_001/model_report.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cdiag/kp_half/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "ff1d0bba7397256195068b05112ea451f4ea177eef8b03086e57704f135d446d",
+      "bytes": 3053832
+    },
+    "results/Cdiag/kp_half/run_001/run.log": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "1b00920ce3d11dbf71f5797553d26243a2dfcfc4f9a537935e4bcacd9550c826",
+      "bytes": 321373
+    },
+    "results/Cdiag/kp_half/run_001/scene_report.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cdiag/kp_half/run_001/summary.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "98663de14072ed839b15de0b5e47a9144d49d77eab298067b2e55f1461c706ba",
+      "bytes": 14790
+    },
+    "results/Cdiag/kp_small/run_001/c1_curves.png": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "e5a9798b8118ad882a380cc7211f5483922287f2d3a6c3d9f37b742962b16f5a",
+      "bytes": 195874
+    },
+    "results/Cdiag/kp_small/run_001/c1_metrics.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "807654553aaae2274ddd4f78762cb18b4e77b22374dbeb2c647a437ea3e3ed7a",
+      "bytes": 849
+    },
+    "results/Cdiag/kp_small/run_001/config.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "00d744573a97dfad56f772dbf4183df385b0330c350bda21c87a1bb273ec8cc0",
+      "bytes": 2989
+    },
+    "results/Cdiag/kp_small/run_001/contact_force.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "d5801ecc5eea398b26263860530a1cbfe20eb9c46be220647f8ae3ea31a58cbc",
+      "bytes": 7329893
+    },
+    "results/Cdiag/kp_small/run_001/contact_scene.xml": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cdiag/kp_small/run_001/control.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "99949d86a4e43ca83669a9559f006fa995e498e1e9b0269231f7d56b46a96229",
+      "bytes": 1830591
+    },
+    "results/Cdiag/kp_small/run_001/joint_state.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "4df589ad905dd23014690ace5c4e0690257a4adfd7235d1232c16e7373851991",
+      "bytes": 7016969
+    },
+    "results/Cdiag/kp_small/run_001/model_report.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cdiag/kp_small/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "09ee4cab5dc61245d635439f4a081efbdc553055028881e9182211a0da098fec",
+      "bytes": 3052395
+    },
+    "results/Cdiag/kp_small/run_001/run.log": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "a13d0f7f02cab999ac995af80a04123cc2fe766f9587b19a2b74166784af7fbc",
+      "bytes": 321373
+    },
+    "results/Cdiag/kp_small/run_001/scene_report.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cdiag/kp_small/run_001/summary.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "14ac419b3a1ce9c20a4710d53a1e6503c246a2cb60769fcc9c954d25eb7d0cf7",
+      "bytes": 14795
+    },
+    "results/Cdiag/lpf20/run_001/c1_curves.png": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "5881b1e41871a9f4366292e49995ec8d61fc7fb24377767d54e9ae64a934a092",
+      "bytes": 207892
+    },
+    "results/Cdiag/lpf20/run_001/c1_metrics.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "67ab58c6e3b90a9a42c3b755b76bf7885f39addcbac54069c57d0e31a7016475",
+      "bytes": 836
+    },
+    "results/Cdiag/lpf20/run_001/config.json": {
+      "archive": "debug_raw_04.zip",
+      "sha256": "f1d3a82dfc002ad7ff25ec3013858e5ca69ea67d4b6dd2bb9fa40ab951151672",
+      "bytes": 3022
+    },
+    "results/Cdiag/lpf20/run_001/contact_force.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "1bcdd93e0f4631acd20388c9b162582f468cc15a93cdbf896b24f187519c52ec",
+      "bytes": 7331802
+    },
+    "results/Cdiag/lpf20/run_001/contact_scene.xml": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cdiag/lpf20/run_001/control.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "b175b4a56d096153d8ca6c57d3ed8c70a0ae40bc68a0e688ce228c4d08090917",
+      "bytes": 1832316
+    },
+    "results/Cdiag/lpf20/run_001/joint_state.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "48cb05341de4d71a99283908356e381d0cb64408c5d6bb2affbed39e2770074a",
+      "bytes": 7016429
+    },
+    "results/Cdiag/lpf20/run_001/model_report.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cdiag/lpf20/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "a6be448f36b865eb7b9437b6724355bb88df2f7cc796219cef3bafdf2ac1ea3c",
+      "bytes": 3059102
+    },
+    "results/Cdiag/lpf20/run_001/run.log": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "d5f35df31e4e9e5e123da5996c3d69cbbd050e24ed66c2349daaf26525f9c3be",
+      "bytes": 321377
+    },
+    "results/Cdiag/lpf20/run_001/scene_report.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cdiag/lpf20/run_001/summary.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "43cfcefce9e87e52f57b9531b85ff2ff08a2d3fe87543da1f9ce900a79a8b8c4",
+      "bytes": 14783
+    },
+    "results/Cff/run_001/c1_curves.png": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "54d3103bf7ff58f01a1abdc65030afce002673bbffc461ff9d76a1603c33d448",
+      "bytes": 198703
+    },
+    "results/Cff/run_001/c1_metrics.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "30389480ea34f61b03abfe199a1c0b7605c8105217ed790c3750e91f9ca4d972",
+      "bytes": 848
+    },
+    "results/Cff/run_001/config.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "b6930017f07a277e83a1b3e8bd2b1b4e54eec0e6c866370cb948adb75b9b947a",
+      "bytes": 2989
+    },
+    "results/Cff/run_001/contact_force.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "94ae710ae4ab15973b4eda9502298b0cdecd70ec29f2806959318b26ac5709f0",
+      "bytes": 7328790
+    },
+    "results/Cff/run_001/contact_scene.xml": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "61ca4338a7249fe53b3035ff4079741e1f67d82a64d1fff62af61061488ba23b",
+      "bytes": 16268
+    },
+    "results/Cff/run_001/control.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "7a820d0b54b640bba15e8390fb68ab048dd34acf15d9c6b29e635cb83c8f6bf1",
+      "bytes": 1831498
+    },
+    "results/Cff/run_001/joint_state.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "037e87279722fa78dad3704eacbf01d7ccf4096f9b52d0c0f692ad4cd302ca45",
+      "bytes": 7017307
+    },
+    "results/Cff/run_001/model_report.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cff/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "46b02427f0fa7f1ba5d0f6b879a935099c59ca174a1b9fc370675dafc66cae1f",
+      "bytes": 3052262
+    },
+    "results/Cff/run_001/run.log": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "895d8eaebc1a81238b3eebe2148c09e851499e9bdc88c59b9f35521ba65b5d49",
+      "bytes": 321380
+    },
+    "results/Cff/run_001/scene_report.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cff/run_001/summary.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "82599746f3ad3bb440ab74862ec74c75c158a7e7d6d2d9aec995b1014f9e78d7",
+      "bytes": 15107
+    },
+    "results/Cintegration/Euler/run_001/config.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "b6930017f07a277e83a1b3e8bd2b1b4e54eec0e6c866370cb948adb75b9b947a",
+      "bytes": 2989
+    },
+    "results/Cintegration/Euler/run_001/contact_force.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "632a07cbcdeac57ab2ced75bd074e3479a102bfe4c56da81b148e2cddab014ed",
+      "bytes": 365303
+    },
+    "results/Cintegration/Euler/run_001/contact_scene.xml": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "40f2da3d05d7577e5e317500e9f39733fafb94019662b2e973cdf3d4f1ca4876",
+      "bytes": 16115
+    },
+    "results/Cintegration/Euler/run_001/control.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "64072a9d80d75fcd36fa6e8591aafc48f8bffabc9f43c31fe60d839f9e6764ed",
+      "bytes": 66881
+    },
+    "results/Cintegration/Euler/run_001/joint_state.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "f1b679d715f964c5a2acfde36fda88190fb3f91b06765bf96b98c3a398211cfc",
+      "bytes": 383812
+    },
+    "results/Cintegration/Euler/run_001/model_report.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "eaf662e514c71ebff02104527baab5046db49746edde88e01680ce78675ac207",
+      "bytes": 9622
+    },
+    "results/Cintegration/Euler/run_001/run.log": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "d32527bd10f5143a861626ec01e50a817c4cf8255269d3abe71daa876da2592f",
+      "bytes": 17945
+    },
+    "results/Cintegration/Euler/run_001/scene_report.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cintegration/Euler/run_001/summary.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "375116e89071966f1da167344115fdb80675b72b18158df565afed59a75cc096",
+      "bytes": 13522
+    },
+    "results/Cintegration/RK4/run_001/config.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "b6930017f07a277e83a1b3e8bd2b1b4e54eec0e6c866370cb948adb75b9b947a",
+      "bytes": 2989
+    },
+    "results/Cintegration/RK4/run_001/contact_force.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "8e173ed0e90468ab4472a341a46340fbd70ae1ff221157108e97502dd23c1a12",
+      "bytes": 7342113
+    },
+    "results/Cintegration/RK4/run_001/contact_scene.xml": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "b573ddcaa6de7a8b89fd337b0a62c27bf725d5d56734150d977f37b43b45d9f0",
+      "bytes": 16113
+    },
+    "results/Cintegration/RK4/run_001/control.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "d23f16f454b20cd69459d35ccf60d900ecef467b459fa1a6f7f8921688973a3a",
+      "bytes": 1827972
+    },
+    "results/Cintegration/RK4/run_001/joint_state.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "1c85472c93fa990dfe8b6b5857e2b6863505a28cd4666d80cabb972aef1ddd11",
+      "bytes": 6899021
+    },
+    "results/Cintegration/RK4/run_001/model_report.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "c9941fa73a3dd386527d4de8f52acb1c65c08e0241d71636b55a887d5050bf1b",
+      "bytes": 9620
+    },
+    "results/Cintegration/RK4/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "908bee948813ef963c348586798e83f80b443a4f4640a9fd4735d96036744395",
+      "bytes": 3051667
+    },
+    "results/Cintegration/RK4/run_001/run.log": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "281fcfeef939049f429c5b826c33d7db70744b1c51ae91e8d5c0c062af443713",
+      "bytes": 321325
+    },
+    "results/Cintegration/RK4/run_001/scene_report.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cintegration/RK4/run_001/summary.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "2487bd89fbceae8d3ba25cff1b036db069c54797c7e63af64658e5f06a8126e0",
+      "bytes": 14281
+    },
+    "results/Cinterp/run_001/c1_curves.png": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "0236e138b31b680936988d42072abcfbf71f37a70ad96d5afbdf67d7ba9a6f05",
+      "bytes": 208295
+    },
+    "results/Cinterp/run_001/c1_metrics.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "bc4a5b6fdd18cabc9ca5c7da744021c715f822da5413ee25616d4468f023a50e",
+      "bytes": 849
+    },
+    "results/Cinterp/run_001/config.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "b6930017f07a277e83a1b3e8bd2b1b4e54eec0e6c866370cb948adb75b9b947a",
+      "bytes": 2989
+    },
+    "results/Cinterp/run_001/contact_force.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "8fd179c14480e6a6285909f851771715da691781d1281b0aede0ccc055321a62",
+      "bytes": 7328915
+    },
+    "results/Cinterp/run_001/contact_scene.xml": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "61ca4338a7249fe53b3035ff4079741e1f67d82a64d1fff62af61061488ba23b",
+      "bytes": 16268
+    },
+    "results/Cinterp/run_001/control.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "94f82479031063dc0610eca58167dc20a9a9da3baa09ad871ab451edef2748b1",
+      "bytes": 1830190
+    },
+    "results/Cinterp/run_001/joint_state.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "8ceb048ddb431d340282dd05146924ad8c92eda0e1e761801fa237efa536b766",
+      "bytes": 7009388
+    },
+    "results/Cinterp/run_001/model_report.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cinterp/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "a40757b6f7936e2d9a1fad0c3af0cf3856e5c230f5569e2c21f4f9f382d0569f",
+      "bytes": 3053046
+    },
+    "results/Cinterp/run_001/run.log": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "dbf1fbd7c90ef78366d99663ff93b35832e8e4bedb6962f4a5b1a3314e26cb9e",
+      "bytes": 321372
+    },
+    "results/Cinterp/run_001/scene_report.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cinterp/run_001/summary.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "0c642dee6d8667c04c5f710d1c2fa5c18348039043e1713a222d42232686ecb8",
+      "bytes": 15110
+    },
+    "results/Cisolate/frozen_at_motion/run_001/c1_curves.png": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "b7b59c8d931f67aa74b5586d9e8d78fecaed0ddb5d3bc905cff5419abc3c241b",
+      "bytes": 194444
+    },
+    "results/Cisolate/frozen_at_motion/run_001/c1_metrics.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "300d08490c74d4cf7a815b15854832c76369bbd4037dd337969e529b7d818b37",
+      "bytes": 846
+    },
+    "results/Cisolate/frozen_at_motion/run_001/config.json": {
+      "archive": "debug_raw_05.zip",
+      "sha256": "b6930017f07a277e83a1b3e8bd2b1b4e54eec0e6c866370cb948adb75b9b947a",
+      "bytes": 2989
+    },
+    "results/Cisolate/frozen_at_motion/run_001/contact_force.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "5d0318ed137b8de77c6cdca7987b42d46f7089e7fa399729de686d433e9a22e1",
+      "bytes": 7346382
+    },
+    "results/Cisolate/frozen_at_motion/run_001/contact_scene.xml": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cisolate/frozen_at_motion/run_001/control.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "a2e93bace821c5c1bec67e6934d2409ae224d24faa6a10e874fe2d34c0c82324",
+      "bytes": 1846781
+    },
+    "results/Cisolate/frozen_at_motion/run_001/joint_state.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "f8b6d785acd44a625b83fc1371760e185c77be8126424ef2870a02288f458166",
+      "bytes": 7018592
+    },
+    "results/Cisolate/frozen_at_motion/run_001/model_report.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cisolate/frozen_at_motion/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "5bde831003d21780c01b1ec47143a094d83cb8fbd43ed503d1658737dacc7fa9",
+      "bytes": 3092409
+    },
+    "results/Cisolate/frozen_at_motion/run_001/run.log": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "9e04e40aebf0832da2b120a5f7cf342c1134f882f406f960c20721f361212380",
+      "bytes": 321401
+    },
+    "results/Cisolate/frozen_at_motion/run_001/scene_report.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cisolate/frozen_at_motion/run_001/summary.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "4e8a8db27a2b6b4e49841d3b23dfd8f2ce8a40b8090a9cc9f85f107c20f36d59",
+      "bytes": 15115
+    },
+    "results/Cisolate/lpf2/run_001/c1_curves.png": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "e1c5162a13cf731c405d92b05c8e3c4ed33a23b35c7a658343a2ae77b4125b7e",
+      "bytes": 206218
+    },
+    "results/Cisolate/lpf2/run_001/c1_metrics.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "4840dedf44ec36252b5fd64fe6f9be029d55b84e5c82fbd51f2aaa59ad37bdc3",
+      "bytes": 849
+    },
+    "results/Cisolate/lpf2/run_001/config.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "98d480cd5a025bfd3e336e0b35e7177fa9bdbc98556d3b178fd088e6d3e5b681",
+      "bytes": 3021
+    },
+    "results/Cisolate/lpf2/run_001/contact_force.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "f0db57d3bbdd1af81e42f200490fa2defaf0b9699c686bf49729b3c72d804373",
+      "bytes": 7330875
+    },
+    "results/Cisolate/lpf2/run_001/contact_scene.xml": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cisolate/lpf2/run_001/control.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "a9916489ce385b0743871127d02dd2a1977e5f61307fe68fe442ef0cc2db95e3",
+      "bytes": 1833784
+    },
+    "results/Cisolate/lpf2/run_001/joint_state.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "9fa8d41a9aca1fefb276c76d4b66e33b430e162340a77c18524e0c565e4561d8",
+      "bytes": 7017454
+    },
+    "results/Cisolate/lpf2/run_001/model_report.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cisolate/lpf2/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "64ee23bdf2f85059ac5fc82618a227f1d0cdbe98861a6eb23bec0c7548100404",
+      "bytes": 3054396
+    },
+    "results/Cisolate/lpf2/run_001/run.log": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "b9e82966c23e73633065f0e97cd9e0b3bf24dbee7d25eeec71ac00b988de1b7b",
+      "bytes": 321385
+    },
+    "results/Cisolate/lpf2/run_001/scene_report.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cisolate/lpf2/run_001/summary.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "20d5e66853dd438df37b1d7cd19937c0d19d5c32ce11e592b437bdb0a28b9628",
+      "bytes": 15121
+    },
+    "results/Cisolate/slow_integral/run_001/c1_curves.png": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "06d2ef392345216cd2b7dc330eb91ef1535bacd201d6e7f6fe9de3b70f22db08",
+      "bytes": 210859
+    },
+    "results/Cisolate/slow_integral/run_001/c1_metrics.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "f9a97fb84d17a0ae217bdeb7ad57bdca1a8d7f48af4af517774420d3735b3996",
+      "bytes": 846
+    },
+    "results/Cisolate/slow_integral/run_001/config.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "7fe949b5673e3d69a64f0d34ae11bebb1ab2330d8189d871b5512304676bd7b3",
+      "bytes": 2988
+    },
+    "results/Cisolate/slow_integral/run_001/contact_force.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "333d309c6f3d2d03cf3e2865cf1257522b03eaf862d93269bb7a4b5d7c281912",
+      "bytes": 7337208
+    },
+    "results/Cisolate/slow_integral/run_001/contact_scene.xml": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "0f1f0fe28e68f27579552fd8fb656887c3abaa9c6e8b68874b422a64f8359f97",
+      "bytes": 16271
+    },
+    "results/Cisolate/slow_integral/run_001/control.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "882b097da506891c1d8ccf9600ce110eba4ba61b5ca358f64f1e753dcfe8e661",
+      "bytes": 1827315
+    },
+    "results/Cisolate/slow_integral/run_001/joint_state.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "3d96ffc3fea450eb3fb8a193726033eca625ab7e743f573613f8c6b90de2234c",
+      "bytes": 7016422
+    },
+    "results/Cisolate/slow_integral/run_001/model_report.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cisolate/slow_integral/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "f04fb91ca18468b0a8087fd853ed7b30588b830577ee03b6a120c682841158c0",
+      "bytes": 3088535
+    },
+    "results/Cisolate/slow_integral/run_001/run.log": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "aa2a89c6ab2a49433b125e533a38882cb56d89c3e545ae078a62908a3edaa4a3",
+      "bytes": 321391
+    },
+    "results/Cisolate/slow_integral/run_001/scene_report.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cisolate/slow_integral/run_001/summary.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "abfebf87fadebefa20a6f3f256172dc541c0141624de776159f6fb0f28b2256f",
+      "bytes": 15116
+    },
+    "results/Cwrench/run_001/c1_curves.png": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "7cf66c867b40753228ea8c98ab4f60b3834b12f184a307ee278e42d7137b2f52",
+      "bytes": 195518
+    },
+    "results/Cwrench/run_001/c1_metrics.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "997b1641525a2614ce6997e8015612ececf0f963e4113984ff2be5a87cb9e630",
+      "bytes": 848
+    },
+    "results/Cwrench/run_001/config.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "b6930017f07a277e83a1b3e8bd2b1b4e54eec0e6c866370cb948adb75b9b947a",
+      "bytes": 2989
+    },
+    "results/Cwrench/run_001/contact_force.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "055290912b69b1231eae6bba9d08c4421c79380eb7c4c4332066339dd361a760",
+      "bytes": 7323092
+    },
+    "results/Cwrench/run_001/contact_scene.xml": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "61ca4338a7249fe53b3035ff4079741e1f67d82a64d1fff62af61061488ba23b",
+      "bytes": 16268
+    },
+    "results/Cwrench/run_001/control.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "cb77868f0069d24546fd83336118d53f1de1e2a3e13793f231fd60176b61d5db",
+      "bytes": 1827299
+    },
+    "results/Cwrench/run_001/joint_state.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "b258d1430590c96353ae015cec5a1668232c3a22a9bcffda2d86f5c6be97a9c3",
+      "bytes": 7020650
+    },
+    "results/Cwrench/run_001/model_report.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "fb664e94583ecf0b2be2dd996bf46dbb28f5e15a6d3ffeda987d548e0098bc97",
+      "bytes": 9629
+    },
+    "results/Cwrench/run_001/raw_contacts.csv": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "40be6bf732364fd49331062a66a2402815a1f029540e18fd167cae4cdea173b1",
+      "bytes": 3018817
+    },
+    "results/Cwrench/run_001/run.log": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "71b470492291974f2626776e0ab43c9ef529160e11927d3be6a9b6a12f33a2d1",
+      "bytes": 321345
+    },
+    "results/Cwrench/run_001/scene_report.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "418d16dba67db595c963966c7d6d1e8c6408e4386b7b60d94968a45dae6ea69b",
+      "bytes": 1324
+    },
+    "results/Cwrench/run_001/summary.json": {
+      "archive": "debug_raw_06.zip",
+      "sha256": "32546307bd12ee4d93f10861068c8721ff87cda2fd8098b17d9bc0b45f856314",
+      "bytes": 15107
+    }
+  }
+}
