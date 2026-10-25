@@ -41,6 +41,8 @@
 
 `ForcePI.step(target_force, measured_force, dt)` 输出法向压入修正（m）和比例/积分/限幅状态。`integral` 存储已经乘积分增益的贡献（m）。力不足时增加压入；力过大时退出。接管时积分补偿比例项；幅值或变化率饱和且误差继续推动饱和时暂停积分。
 
+`pi_algorithm=fuzzy` 使用相同输入输出签名的 `FuzzyAdaptivePI`。`pi_kp_m_per_n`、`pi_ki_m_per_ns` 为当前周期实际生效值；默认 fixed 的两个字段保持常值。模糊输入、规则、增益范围及积分补偿见[算法说明](fuzzy_pi.md)。
+
 `contact_force.csv` 的 `normal_force_n` 和 `force_error_n` 始终是真值及目标减真值；`control.csv` 的 `force_error_n` 为目标减测量值。启用扰动后两者不同，不应混用。`joint_state.csv` 保留物理位置/速度，`raw_contacts.csv` 保留坐标变换重构所需的接触局部力和坐标系。
 
 每组子实验保存 `config.json`、`summary.json`、版本与源码/资源 SHA256、`run.log`。异常会保留已有样本和失败时刻，不补造完整轨迹。停止仿真表示结束数值积分，不是经过验证的真机安全停止。

@@ -9,6 +9,7 @@ import pandas as pd
 from common.chinese_output import configure_chinese_font, save_csv
 from common.kinematics import approach_reference
 from controllers.force_pi import ForcePI
+from controllers.fuzzy_pi import FuzzyAdaptivePI
 from experiments.m0_01_model_inspection import ROOT, new_run, save_json
 from experiments.m0_03_contact_force import load_config as load_base, run as run_trial
 
@@ -21,7 +22,10 @@ def load_config(path=Path("configs/m1.json")):
 class ForceReference:
     """将普通状态字典中的测量力送入独立 PI，再输出三维参考。"""
     def __init__(self, config, mode):
-        self.pi = ForcePI(config)
+        algorithm = config.get("pi_algorithm", "fixed")
+        if algorithm not in ("fixed", "fuzzy"):
+            raise ValueError("PI 算法必须为 fixed 或 fuzzy")
+        self.pi = (FuzzyAdaptivePI if algorithm == "fuzzy" else ForcePI)(config)
         self.mode = mode
         self.active = False
         self.contact_duration = 0.0
@@ -34,7 +38,8 @@ class ForceReference:
         details = {"force_target_n": config["force_target_n"], "measured_force_n": measured["normal_force_n"],
                    "feedback_time_s": measured["time_s"], "force_error_n": error, "pi_p_m": 0.0,
                    "pi_i_m": 0.0, "pi_offset_m": 0.0, "pi_unsaturated_m": 0.0,
-                   "pi_integral_blocked": False, "pi_output_limited": False, "pi_active": False}
+                   "pi_integral_blocked": False, "pi_output_limited": False, "pi_active": False,
+                   "pi_kp_m_per_n": self.pi.kp, "pi_ki_m_per_ns": self.pi.ki}
         if time_s + 1e-10 >= config["force_control_start_s"]:
             if not self.active:
                 if self.contact_duration < config["contact_confirm_s"]:
@@ -45,7 +50,7 @@ class ForceReference:
                 offset, pi_details = self.pi.step(config["force_target_n"], measured["normal_force_n"], dt)
                 target = target - normal * offset  # 力不足：误差为正，沿 -法向增加压入。
                 details.update(pi_details, pi_active=True)
-                phase = "力PI闭环"
+                phase = "模糊自适应力PI闭环" if isinstance(self.pi, FuzzyAdaptivePI) else "力PI闭环"
             else:
                 phase = "固定位置Baseline"
         return target, phase, details
@@ -172,8 +177,11 @@ if __name__ == "__main__":
     parser.add_argument("--speed", type=float, default=1.0, help="播放倍率")
     parser.add_argument("--snapshot", action="store_true", help="保存末态截图，需要 OpenGL")
     parser.add_argument("--sensor-config", type=Path, help="可选的传感器参数 JSON，叠加到实验配置并保存")
+    parser.add_argument("--algorithm", choices=("fixed", "fuzzy"), help="选择固定或在线模糊 PI，省略时沿用配置")
     args = parser.parse_args()
     config = load_config(args.config)
     if args.sensor_config is not None:
         config.update(json.loads(args.sensor_config.read_text(encoding="utf-8")))
+    if args.algorithm is not None:
+        config["pi_algorithm"] = args.algorithm
     run(config, viewer=args.viewer, speed=args.speed, snapshot=args.snapshot, mode=args.mode)

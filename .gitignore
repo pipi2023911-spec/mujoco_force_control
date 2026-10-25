@@ -3,6 +3,7 @@ __pycache__/
 .pytest_cache/
 t/
 t_all/
+t_fuzzy/
 *.pyc
 results/
 README_LINUX_ROS.md

@@ -23,6 +23,13 @@ python -m experiments.m1_force_pi --mode both
 `both` 从相同 home 状态依次运行固定位置 Baseline 和固定 PI；`--mode pi` 只运行 PI。M1 默认目标 5 N，物理步长 1 ms、控制周期 5 ms，12 秒仿真，8 秒接管；实际值以保存的完整配置为准。
 
 ```powershell
+python -m experiments.m1_force_pi --mode pi --algorithm fuzzy
+python -m experiments.m1_fuzzy_comparison
+```
+
+`--algorithm fuzzy` 启用真正逐周期调整增益的模糊 PI，省略时仍默认固定 PI。完整六条件固定/模糊对照保存于 `results/F/`，规则、范围和验收定义见[算法说明](fuzzy_pi.md)。
+
+```powershell
 python -m experiments.m1_force_pi --mode pi --sensor-config configs/sensor_example.json
 ```
 
