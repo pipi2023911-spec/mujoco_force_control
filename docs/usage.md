@@ -25,9 +25,12 @@ python -m experiments.m1_force_pi --mode both
 ```powershell
 python -m experiments.m1_force_pi --mode pi --algorithm fuzzy
 python -m experiments.m1_fuzzy_comparison
+python -m experiments.c1_fuzzy_comparison
 ```
 
 `--algorithm fuzzy` 启用真正逐周期调整增益的模糊 PI，省略时仍默认固定 PI。完整六条件固定/模糊对照保存于 `results/F/`，规则、范围和验收定义见[算法说明](fuzzy_pi.md)。
+
+`c1_fuzzy_comparison` 将同一算法放入原模型5 N、8秒单程的C1运动任务，九种测量条件各运行固定/模糊一对，默认结果在 `results/CF/run_XXX/`；可用 `--output results/CF_new` 指定新的短路径父目录。`comparison.csv`记录原任务成败、运动段真值RMSE、接触丢失、实际增益范围及限幅占比；两张PNG分别展示力误差和在线增益。三种子统计见 `combo_statistics.csv`。不要把任务PASS解释为通过额外力误差门槛。
 
 ```powershell
 python -m experiments.m1_force_pi --mode pi --sensor-config configs/sensor_example.json

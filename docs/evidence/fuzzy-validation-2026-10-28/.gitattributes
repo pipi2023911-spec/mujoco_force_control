@@ -1,0 +1,2 @@
+# 保留证据原始字节，避免检出时转换换行符导致SHA256失配。
+* -text whitespace=cr-at-eol

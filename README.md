@@ -72,6 +72,7 @@ python -m venv .venv
 | `experiments/c1_wipe.py` | 切向往返路径与法向 PI、路径/接触评价 |
 | `experiments/c1_contact_feasibility.py` | 局部零关节加速度接触快照、逆/正向回代与速度包络，不接入控制链 |
 | `experiments/c1_sensor_study.py` | 复用现有九组测量参数，记录固定PI滑动任务成败、完整段力误差和接触丢失 |
+| `experiments/c1_fuzzy_comparison.py` | 原模型5 N、8秒单程下的固定/模糊PI九工况配对与实际增益核对 |
 | `configs/m0_01.json` | 模型来源、home、关节与基础仿真参数 |
 | `configs/m0_02.json` | 工具、薄板、初始间隙、接触与显示配置 |
 | `configs/m0_03.json` | 接近轨迹、IK、真实力/速度/穿透检查与统计窗口 |
@@ -123,6 +124,9 @@ python -m venv .venv
 | `docs/evidence/fuzzy-pi-2026-10-25/comparison.csv`、`study_config.json`、`study_summary.json` | 十二次固定/模糊对照统计、配置和完成状态 |
 | `docs/evidence/fuzzy-pi-2026-10-25/verification.json`、`raw_data.zip` | 实际增益、限幅、源码和噪声配对核对及原始归档 |
 | `docs/evidence/fuzzy-pi-2026-10-25/online_gains.png`、`force_errors.png` | 实际在线增益和真实力误差曲线 |
+| `docs/evidence/fuzzy-validation-2026-10-28/README.md`、`m_comparison.csv`、`c_comparison.csv` | 静态12次复验、C1运动18次配对、局限与Debug记录 |
+| `docs/evidence/fuzzy-validation-2026-10-28/manifest.json`、`verification.json`、`raw_data_*.zip` | 原始数据索引、控制/测量重放、完整源码与命令日志；相同历史CSV按索引引用 |
+| `docs/evidence/fuzzy-validation-2026-10-28/verify_results.py`、`package_results.py`、`make_report.py` | 本轮结果核对、审计打包快照及从归档重建报告/细节图 |
 | `docs/evidence/compliance-followup-2026-10-25/README.md` | 导纳、C1成败、局部拟合与固定增益消融记录 |
 | `docs/evidence/compliance-followup-2026-10-25/*.csv`、`verification.json`、`c1_diagnostics.json` | 各组指标、诊断参数、归档校验与局部模型核对 |
 | `docs/evidence/compliance-followup-2026-10-25/*.zip`、`*.png` | 导纳/C1/拟合/消融原始数据和曲线，详见目录说明 |
@@ -141,13 +145,15 @@ python -m venv .venv
 
 实验数据默认保存在 `results/`，不把大批运行文件自动提交到 Git。每次运行的配置、版本、源码/模型摘要、原始 CSV、失败信息和曲线应成套保留。数值和结论只对应其实际运行条件；无噪声、零延迟的低误差不能代表真实传感器或真机性能。
 
-在线模糊增益与固定/模糊对照已进入实际仿真。多环境有效刚度标定、更多目标与扰动、独立调参消融仍需继续验证。AI 辅助代码的核心逻辑需由使用者理解、修改并通过实验验证。
+在线模糊增益与固定/模糊对照已完成本阶段仿真验收，在已测试运动工况下具有性能提升，本阶段收口。保留个别指标退步和适用范围，不继续扩展实验或新增算法。AI 辅助代码的核心逻辑需由使用者理解、修改并通过实验验证。
 
 [固定 PI 与测量通道实测记录](docs/evidence/README.md)包含最初的默认兼容性验证和原始数据。
 
 [9 组固定 PI 测量扰动实验](docs/evidence/sensor-study-2026-10-25/README.md)保留单因素、三种子组合及偏置问题。
 
 [在线模糊 PI 闭环验收](docs/evidence/fuzzy-pi-2026-10-25/README.md)包含十二次配对、实际Kp/Ki曲线与不利结果。
+
+[静态复验与C1运动固定/模糊配对](docs/evidence/fuzzy-validation-2026-10-28/README.md)完成30次仿真和13项相关测试。C1九条件18/18通过原任务、运动段无接触丢失；无扰动运动RMSE从0.124041降为0.113359 N。大延迟下模糊峰值偏差更大、静态个别指标退步和首次Windows模型加载失败均保留，不能据此宣称普适优势。
 
 [柔顺遗留项实测](docs/evidence/compliance-followup-2026-10-25/README.md)保存M2b、局部有效刚度和固定增益消融，以及当时71 PASS、1个原C1 FAIL的真实记录。
 

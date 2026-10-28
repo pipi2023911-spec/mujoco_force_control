@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "local_document_links_checked": 94,
+  "controller_and_physics_changes": false,
+  "trials_verified": 30,
+  "archive_crc_and_member_sha256": "PASS; see packaging log and manifest",
+  "files": {
+    ".gitattributes": {
+      "sha256": "d517c2473495cf823ed9b68702e978bee3b8ac0d5d1025babab82fb8ee9d6f14",
+      "bytes": 110
+    },
+    "c_combo_statistics.csv": {
+      "sha256": "02f8d7995ff6649c907515b78eb252a263bc81ed5f674399b1acddad6e0d08b4",
+      "bytes": 124
+    },
+    "c_comparison.csv": {
+      "sha256": "71adb2aca7bb3cbcbd8991b0c58fa0b3be6208782e1e21ef218272767b93568a",
+      "bytes": 8232
+    },
+    "c_force_errors.png": {
+      "sha256": "fbe11a76b8ec90675e779fac969cb294b5f3651ea1c867022d44b7ec724b89a7",
+      "bytes": 82279
+    },
+    "c_motion_detail.png": {
+      "sha256": "01b6f8f71c27de006ae895695b1fd5860293862cf4de744139b22588aefafd8d",
+      "bytes": 173255
+    },
+    "c_online_gains.png": {
+      "sha256": "9cdeb921b845d04bdc06bd6ee2e38bf8256fc7a29aced08e6dcbea98c716e496",
+      "bytes": 396249
+    },
+    "c_rmse_change.csv": {
+      "sha256": "923f39f742f08051f560e826e899cfe72ce671a21a6967308b74ae12b0d54af3",
+      "bytes": 617
+    },
+    "c_study_config.json": {
+      "sha256": "f672a33eb26893c4ef69b1fb35efac0d73417608b68cc9f6efe01f104e25c4c0",
+      "bytes": 5523
+    },
+    "c_study_summary.json": {
+      "sha256": "ad51a4ea8536e590831596e32f007ed220ca1bf57d973380e0d9c07b85ce927c",
+      "bytes": 309
+    },
+    "m_comparison.csv": {
+      "sha256": "4e7beb26ca598bdd1136dfec9e60aa506995c6076830d143f80e5b42ef9cf93b",
+      "bytes": 4082
+    },
+    "m_force_errors.png": {
+      "sha256": "2a4d5189f1e325bf7c9dc3f7135784d4d4744c164a5f2fcc6663af7855b39863",
+      "bytes": 86436
+    },
+    "m_online_gains.png": {
+      "sha256": "33bf4ce25ac76867affd2206a3e7fe99e167fa18c8190ed64b0c1bf0cb03194e",
+      "bytes": 343952
+    },
+    "m_study_config.json": {
+      "sha256": "756e60fc4a64336d932782c82e0ca0c9835343312303adfcdfa91f503ee38d31",
+      "bytes": 4040
+    },
+    "m_study_summary.json": {
+      "sha256": "794ab6365206a1c5d27ee2fa34f20a8a74cf9ee36a209737a16882a1cc27386b",
+      "bytes": 211
+    },
+    "make_report.py": {
+      "sha256": "ba244876bce13d1c4e19dbb0c8b0a907b557f1a204cd87d52aec4dcf0a225585",
+      "bytes": 11255
+    },
+    "manifest.json": {
+      "sha256": "60971e4695de194dda0ea5136968ad2dcb0c5f5ef1fe5d96da3b68a9f9e7e861",
+      "bytes": 121580
+    },
+    "package_results.py": {
+      "sha256": "e51620f573bd36018f7549de93bf4ae2fcc41ac216e531efb7be23c889cc65ad",
+      "bytes": 5388
+    },
+    "raw_data_01.zip": {
+      "sha256": "38500e9e7932e52331eac6887016ab3757f1b5b728332f54b5d4f3745b151ad3",
+      "bytes": 27536198
+    },
+    "raw_data_02.zip": {
+      "sha256": "445f96d540e09db37bf1ed85c253a2cb392aaea843b2b934c7899848cb92d955",
+      "bytes": 20914785
+    },
+    "raw_data_03.zip": {
+      "sha256": "177a6257558719ff8567bca761e7b5352cfd5217f44e4728473b51b3446f7ad1",
+      "bytes": 20769743
+    },
+    "raw_data_04.zip": {
+      "sha256": "021ceaf3b4b710295f47513f61564c55f50771456beed8300ba1e063bb8c1740",
+      "bytes": 20992529
+    },
+    "raw_data_05.zip": {
+      "sha256": "075df52fa4f990e25b3c962dbba8a4f3bcf767162b3030a92e6fb67811707ded",
+      "bytes": 20989168
+    },
+    "raw_data_06.zip": {
+      "sha256": "cdeac2a4d7e99c21bddcc3fe6f8f87b66847d0cbb5e95bf040d584fcf0900abe",
+      "bytes": 8286610
+    },
+    "README.md": {
+      "sha256": "228959da2143d69d48a28e58caaf9bf500a22caa860cb1d01a2726fc1e611a80",
+      "bytes": 8666
+    },
+    "verification.json": {
+      "sha256": "8831132f4032dae3325553fcc946b4faa484ed059242624e4fe2370475f0650a",
+      "bytes": 19126
+    },
+    "verify_results.py": {
+      "sha256": "f34f04a0f8de3333b22eb5322771c758fc599d4b412a0deb68321de2512e7295",
+      "bytes": 9406
+    }
+  },
+  "git_diff_check": "PASS",
+  "new_experiment_runner": "experiments/c1_fuzzy_comparison.py",
+  "gui_review": [
+    "c_online_gains.png",
+    "c_force_errors.png"
+  ],
+  "not_run": [
+    "full regression suite this round",
+    "real robot",
+    "real sensor",
+    "interactive viewer"
+  ]
+}

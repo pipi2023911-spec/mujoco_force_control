@@ -62,6 +62,7 @@ PI 的积分状态存储已乘 Ki 的位移贡献，因此改变 Ki 后不整体
 python -m experiments.m1_force_pi --mode pi --algorithm fuzzy
 python -m experiments.m1_force_pi --mode pi --algorithm fuzzy --sensor-config configs/sensor_example.json
 python -m experiments.m1_fuzzy_comparison
+python -m experiments.c1_fuzzy_comparison
 python -m pytest tests/test_fuzzy_pi.py -q --basetemp=t_fuzzy
 ```
 
@@ -70,3 +71,5 @@ python -m pytest tests/test_fuzzy_pi.py -q --basetemp=t_fuzzy
 记录真实力全程/末秒 RMSE、稳定时间、峰值与初始偏差、接触、输出限幅、实际增益范围、`online_gains.png` 和 `force_errors.png`。`contact_solref` 的时间常数变化未经有效刚度标定，不等于已经完成具有物理 N/m 值的多刚度实验。
 
 数值测试包含规则分区、实际增益参与计算、增益变化补偿、饱和/反向、非法输入、锁定增益后逐值复现固定 PI，以及实际 Panda 仿真中的在线更新与限幅。有限的对照不能证明普遍优于固定 PI；对照也没有排除“重新选择固定增益即可取得相近效果”的可能，不能把所有改善都归因于在线变化。
+
+`c1_fuzzy_comparison` 在 `results/CF/run_XXX/` 运行原模型、5 N、10 mm往返、8秒单程的九工况配对，共18次物理仿真。复用 `m1_sensor_study.cases()`、原C1控制循环与任务判据；每对仅改变 `pi_algorithm`，接管前真实力须逐值一致。输出实际增益、运动真实力误差、接触丢失、限幅占比和三种子统计；原C1没有运动力RMSE通过门槛。脚本正常退出只代表完成记录，须查看 `任务验收通过` 和失败原因。
